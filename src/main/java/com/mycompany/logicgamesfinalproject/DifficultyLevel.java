@@ -9,12 +9,56 @@ package com.mycompany.logicgamesfinalproject;
  * @author coope
  */
 public class DifficultyLevel extends javax.swing.JFrame {
-
+    private int gameNum;
+    private enum diff{EASY ,MEDIUM, HARD};
+    diff difficulty;
     /**
      * Creates new form DifficultyLevel
      */
-    public DifficultyLevel() {
+    public DifficultyLevel(int gameNum) {
         initComponents();
+        this.gameNum=gameNum;
+    }
+    
+    private void createGame(int game, diff difficulty){
+        int gridSize=0;
+        
+        
+        //alter game board
+        if(game==1){
+            if(difficulty==diff.EASY){
+                gridSize=7;
+            }
+            else if(difficulty==diff.MEDIUM){
+                gridSize=9;
+            }
+            else if(difficulty==diff.HARD){
+                gridSize=12;
+            }
+        }
+        else if(game==1){
+            if(difficulty==diff.EASY){
+                gridSize=4;
+            }
+            else if(difficulty==diff.MEDIUM){
+                gridSize=5;
+            }
+            else if(difficulty==diff.HARD){
+                gridSize=6;
+            }
+        }
+
+        BoardCell[] cells= new BoardCell[gridSize*gridSize];
+        for(int i=0;i<gridSize; i++){
+            for(int j=0; j<gridSize; j++){
+                cells[j+(gridSize*i)]=new BoardCell(50*i, 50*j, 50, 50);
+            }
+        }
+        //create game win
+        GameWin g= new GameWin(cells);
+        g.setVisible(true);
+        
+        
     }
 
     /**
@@ -26,20 +70,35 @@ public class DifficultyLevel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
+        lblDifficulty = new javax.swing.JLabel();
+        btnEasy = new javax.swing.JButton();
+        btnMedium = new javax.swing.JButton();
+        btnHard = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        lblDifficulty.setText("Select Difficulty");
 
-        jLabel1.setText("Select Difficulty");
+        btnEasy.setText("Easy");
+        btnEasy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEasyActionPerformed(evt);
+            }
+        });
+
+        btnMedium.setText("Medium");
+        btnMedium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMediumActionPerformed(evt);
+            }
+        });
+
+        btnHard.setText("Hard");
+        btnHard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHardActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -48,22 +107,52 @@ public class DifficultyLevel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(lblDifficulty)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMedium)
+                            .addComponent(btnEasy)
+                            .addComponent(btnHard))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(lblDifficulty)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEasy)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnMedium)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnHard)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEasyActionPerformed
+        // TODO add your handling code here:
+        difficulty=diff.EASY;
+        createGame(gameNum, difficulty);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnEasyActionPerformed
+
+    private void btnMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMediumActionPerformed
+        // TODO add your handling code here:
+        difficulty=diff.MEDIUM;
+        createGame(gameNum, difficulty);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMediumActionPerformed
+
+    private void btnHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHardActionPerformed
+        // TODO add your handling code here:
+        difficulty=diff.HARD;
+        createGame(gameNum, difficulty);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHardActionPerformed
 
     /**
      * @param args the command line arguments
@@ -93,17 +182,13 @@ public class DifficultyLevel extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DifficultyLevel().setVisible(true);
-            }
-        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton btnEasy;
+    private javax.swing.JButton btnHard;
+    private javax.swing.JButton btnMedium;
+    private javax.swing.JLabel lblDifficulty;
     // End of variables declaration//GEN-END:variables
 }

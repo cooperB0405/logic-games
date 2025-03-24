@@ -19,6 +19,8 @@ public class GameSelectWin extends javax.swing.JFrame {
     private UserStatsWin stats;
     private DefaultTableModel dtmStats;
 
+            
+
     /**
      * Creates new form GameSelectWin
      */
@@ -128,6 +130,11 @@ public class GameSelectWin extends javax.swing.JFrame {
         });
 
         jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         lblCurrentUser.setText("Current User:");
 
@@ -196,16 +203,29 @@ public class GameSelectWin extends javax.swing.JFrame {
 
     private void btnMineSweeperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMineSweeperActionPerformed
         // TODO add your handling code here:
+        DifficultyLevel diffLev= new DifficultyLevel(1);
+        diffLev.setVisible(true);
+
+        
     }//GEN-LAST:event_btnMineSweeperActionPerformed
 
     private void btnMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemoryActionPerformed
         // TODO add your handling code here:
+        DifficultyLevel diffLev= new DifficultyLevel(2);
+        diffLev.setVisible(true);
+
     }//GEN-LAST:event_btnMemoryActionPerformed
 
     private void btnStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsActionPerformed
         // TODO add your handling code here:
         stats.setVisible(true);
     }//GEN-LAST:event_btnStatsActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DifficultyLevel diffLev= new DifficultyLevel(3);
+        diffLev.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

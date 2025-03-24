@@ -95,6 +95,7 @@ public class WelcomeWin extends javax.swing.JFrame {
         GameSelectWin selectGame = new GameSelectWin(userName.getText());
         
         selectGame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnContinueActionPerformed
 
     /**
