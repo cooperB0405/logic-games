@@ -29,8 +29,8 @@ public class GameBoard extends javax.swing.JPanel {
         super.paint(g);
         
         Graphics2D g2= (Graphics2D)g;
-        for (BoardCell cell : cells) {
-            g2.drawRect(cell.cellx, cell.celly, cell.cellw, cell.cellh);
+        for (int i=0; i<cells.length; i++) {
+            g2.drawRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
         }
         g2.drawRect(rectx, recty, 50, 50);
     }
