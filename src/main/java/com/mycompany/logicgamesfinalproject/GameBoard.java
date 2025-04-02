@@ -4,6 +4,7 @@
  */
 package com.mycompany.logicgamesfinalproject;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -11,7 +12,7 @@ import java.awt.Graphics2D;
  *
  * @author coope
  */
-public class GameBoard extends javax.swing.JPanel {
+public class GameBoard extends javax.swing.JPanel implements Updatable{
     private int rectx=50;
     private int recty=50;
     
@@ -29,10 +30,27 @@ public class GameBoard extends javax.swing.JPanel {
         super.paint(g);
         
         Graphics2D g2= (Graphics2D)g;
-        for (int i=0; i<cells.length; i++) {
-            g2.drawRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
+        if(cells!=null){
+            for (int i=0; i<cells.length; i++) {
+                g2.setColor(Color.black);
+                g2.fillRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
+                g2.setColor(Color.white);
+                g2.drawRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
+            }
+            //update on mouse press
+            //observer???
         }
+
         g2.drawRect(rectx, recty, 50, 50);
+    }
+    
+    public void update(){
+            for (int i=0; i<cells.length; i++) {
+//                g2.setColor(Color.black);
+//                g2.fillRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
+//                g2.setColor(Color.white);
+//                g2.drawRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
+            }
     }
     public void getCells(BoardCell[] cells){
         this.cells=cells;

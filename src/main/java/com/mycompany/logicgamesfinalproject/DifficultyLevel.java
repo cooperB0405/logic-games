@@ -36,7 +36,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
                 gridSize=12;
             }
         }
-        else if(game==1){
+        else if(game==2){
             if(difficulty==diff.EASY){
                 gridSize=4;
             }

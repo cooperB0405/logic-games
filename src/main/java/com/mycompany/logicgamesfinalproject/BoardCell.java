@@ -13,11 +13,15 @@ public class BoardCell {
     public int celly;
     public int cellw;
     public int cellh;
+    public boolean showing;
+    public int value;
     
     public BoardCell(int x, int y, int w, int h){
         cellx=x;
         celly=y;
         cellw=w;
         cellh=h;
+        showing=false;
+        value=1;
     }
 }
