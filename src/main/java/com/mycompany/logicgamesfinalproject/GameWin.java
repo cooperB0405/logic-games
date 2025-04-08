@@ -9,11 +9,11 @@ package com.mycompany.logicgamesfinalproject;
  * @author coope
  */
 public class GameWin extends javax.swing.JFrame {
-    private BoardCell[] boardCells;
+    private BoardCell[][] boardCells;
     /**
      * Creates new form MineSweeperWin
      */
-    public GameWin(BoardCell[] cells) {
+    public GameWin(BoardCell[][] cells) {
         initComponents();
         boardCells=cells;
         gameBoard1.getCells(cells);

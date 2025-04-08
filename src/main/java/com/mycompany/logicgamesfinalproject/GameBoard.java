@@ -12,11 +12,11 @@ import java.awt.Graphics2D;
  *
  * @author coope
  */
-public class GameBoard extends javax.swing.JPanel implements Updatable{
+public class GameBoard extends javax.swing.JPanel{
     private int rectx=50;
     private int recty=50;
     
-    private BoardCell[] cells;
+    private BoardCell[][] cells;
     /**
      * Creates new form GameBoard
      */
@@ -32,27 +32,22 @@ public class GameBoard extends javax.swing.JPanel implements Updatable{
         Graphics2D g2= (Graphics2D)g;
         if(cells!=null){
             for (int i=0; i<cells.length; i++) {
-                g2.setColor(Color.black);
-                g2.fillRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
-                g2.setColor(Color.white);
-                g2.drawRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
+                for(int j=0; j<cells[i].length; j++){
+                    g2.setColor(Color.black);
+                    g2.fillRect(cells[i][j].cellx, cells[i][j].celly, cells[i][j].cellw, cells[i][j].cellh);
+                    g2.setColor(Color.white);
+                    g2.drawRect(cells[i][j].cellx, cells[i][j].celly, cells[i][j].cellw, cells[i][j].cellh);
+                }
+
             }
-            //update on mouse press
-            //observer???
+
         }
 
         g2.drawRect(rectx, recty, 50, 50);
     }
     
-    public void update(){
-            for (int i=0; i<cells.length; i++) {
-//                g2.setColor(Color.black);
-//                g2.fillRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
-//                g2.setColor(Color.white);
-//                g2.drawRect(cells[i].cellx, cells[i].celly, cells[i].cellw, cells[i].cellh);
-            }
-    }
-    public void getCells(BoardCell[] cells){
+
+    public void getCells(BoardCell[][] cells){
         this.cells=cells;
     }
     
@@ -76,6 +71,11 @@ public class GameBoard extends javax.swing.JPanel implements Updatable{
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.MatteBorder(null));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,6 +88,14 @@ public class GameBoard extends javax.swing.JPanel implements Updatable{
             .addGap(0, 298, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        int mouseX=evt.getX();
+        int mouseY=evt.getY();
+        
+        
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
