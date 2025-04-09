@@ -33,10 +33,12 @@ public class GameBoard extends javax.swing.JPanel{
         if(cells!=null){
             for (int i=0; i<cells.length; i++) {
                 for(int j=0; j<cells[i].length; j++){
-                    g2.setColor(Color.black);
-                    g2.fillRect(cells[i][j].cellx, cells[i][j].celly, cells[i][j].cellw, cells[i][j].cellh);
-                    g2.setColor(Color.white);
-                    g2.drawRect(cells[i][j].cellx, cells[i][j].celly, cells[i][j].cellw, cells[i][j].cellh);
+                    if (cells[i][j].showing==false){
+                        g2.setColor(Color.black);
+                        g2.fillRect(cells[i][j].cellx, cells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
+                    }
+                    g2.setColor(Color.gray);
+                    g2.drawRect(cells[i][j].cellx, cells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                 }
 
             }
@@ -93,6 +95,16 @@ public class GameBoard extends javax.swing.JPanel{
         // TODO add your handling code here:
         int mouseX=evt.getX();
         int mouseY=evt.getY();
+        double boardX=mouseX/BoardCell.cellw;
+        double boardY=mouseY/BoardCell.cellh;
+        boardX=Math.floor(boardX);
+        boardY=Math.floor(boardY);
+        int arrayIndexX=(int)boardX;
+        int arrayIndexY=(int)boardY;
+        
+        cells[arrayIndexX][arrayIndexY].showing=true;
+        
+        repaint();
         
         
     }//GEN-LAST:event_formMouseClicked

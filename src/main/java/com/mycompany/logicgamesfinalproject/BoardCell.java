@@ -11,16 +11,14 @@ package com.mycompany.logicgamesfinalproject;
 public class BoardCell {
     public int cellx;
     public int celly;
-    public int cellw;
-    public int cellh;
+    public static int cellw=50;
+    public static int cellh=50;
     public boolean showing;
     public int value;
     
-    public BoardCell(int x, int y, int w, int h){
+    public BoardCell(int x, int y){
         cellx=x;
         celly=y;
-        cellw=w;
-        cellh=h;
         showing=false;
         value=1;
     }

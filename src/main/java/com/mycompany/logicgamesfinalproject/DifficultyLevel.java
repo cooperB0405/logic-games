@@ -51,7 +51,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
         BoardCell[][] cells= new BoardCell[gridSize][gridSize];
         for(int i=0;i<gridSize; i++){
             for(int j=0; j<gridSize; j++){
-                cells[i][j]=new BoardCell(50*i, 50*j, 50, 50);
+                cells[i][j]=new BoardCell(50*i, 50*j);
             }
         }
         //create game win
