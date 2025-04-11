@@ -12,15 +12,16 @@ import java.awt.Graphics2D;
  *
  * @author coope
  */
-public class GameBoard extends javax.swing.JPanel{
+public class GameBoardPanel extends javax.swing.JPanel{
     private int rectx=50;
     private int recty=50;
     
-    private BoardCell[][] cells;
+    private MineSweeperCells[][] msCells;
+    private BoardCell[][] memCells;
     /**
      * Creates new form GameBoard
      */
-    public GameBoard() {
+    public GameBoardPanel() {
         initComponents();
         
     }
@@ -30,15 +31,15 @@ public class GameBoard extends javax.swing.JPanel{
         super.paint(g);
         
         Graphics2D g2= (Graphics2D)g;
-        if(cells!=null){
-            for (int i=0; i<cells.length; i++) {
-                for(int j=0; j<cells[i].length; j++){
-                    if (cells[i][j].showing==false){
+        if(msCells!=null){
+            for (int i=0; i<msCells.length; i++) {
+                for(int j=0; j<msCells[i].length; j++){
+                    if (msCells[i][j].hasBeenRevealed()==false){
                         g2.setColor(Color.black);
-                        g2.fillRect(cells[i][j].cellx, cells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
+                        g2.fillRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                     }
                     g2.setColor(Color.gray);
-                    g2.drawRect(cells[i][j].cellx, cells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
+                    g2.drawRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                 }
 
             }
@@ -49,8 +50,9 @@ public class GameBoard extends javax.swing.JPanel{
     }
     
 
-    public void getCells(BoardCell[][] cells){
-        this.cells=cells;
+    public void getCells(MineSweeperCells[][] msCells, BoardCell[][] memCells){
+        this.msCells=msCells;
+        this.memCells=memCells;
     }
     
     public void left(){
@@ -102,7 +104,7 @@ public class GameBoard extends javax.swing.JPanel{
         int arrayIndexX=(int)boardX;
         int arrayIndexY=(int)boardY;
         
-        cells[arrayIndexX][arrayIndexY].showing=true;
+        msCells[arrayIndexX][arrayIndexY].revealCell();
         
         repaint();
         

@@ -22,19 +22,27 @@ public class DifficultyLevel extends javax.swing.JFrame {
     
     private void createGame(int game, diff difficulty){
         int gridSize=0;
+        MineSweeperCells[][] msCells=null;
+        BoardCell[][] memCells=null;
+        
         
         
         //alter game board
         if(game==1){
+            int numMines=0;
             if(difficulty==diff.EASY){
                 gridSize=7;
+                numMines=15;
             }
             else if(difficulty==diff.MEDIUM){
                 gridSize=9;
+                numMines=35;
             }
             else if(difficulty==diff.HARD){
                 gridSize=12;
+                numMines=55;
             }
+            msCells= MineSweeperCells.makeGrid(gridSize);
         }
         else if(game==2){
             if(difficulty==diff.EASY){
@@ -46,16 +54,12 @@ public class DifficultyLevel extends javax.swing.JFrame {
             else if(difficulty==diff.HARD){
                 gridSize=6;
             }
+            memCells= BoardCell.makeGrid(gridSize);
         }
         //use the math for the cells to figure out where the mouse is clickedd
-        BoardCell[][] cells= new BoardCell[gridSize][gridSize];
-        for(int i=0;i<gridSize; i++){
-            for(int j=0; j<gridSize; j++){
-                cells[i][j]=new BoardCell(50*i, 50*j);
-            }
-        }
+        
         //create game win
-        GameWin g= new GameWin(cells);
+        GameWin g= new GameWin(memCells, msCells);
         g.setVisible(true);
         
         
