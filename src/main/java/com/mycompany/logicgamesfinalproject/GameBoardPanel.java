@@ -34,12 +34,32 @@ public class GameBoardPanel extends javax.swing.JPanel{
         if(msCells!=null){
             for (int i=0; i<msCells.length; i++) {
                 for(int j=0; j<msCells[i].length; j++){
+                    if(msCells[i][j].isAMine()){
+                        g2.drawString("M", msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
+                    }
+                    else{g2.drawString(Integer.toString(msCells[i][j].getAdjMines()), 
+                            msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);}
                     if (msCells[i][j].hasBeenRevealed()==false){
                         g2.setColor(Color.black);
                         g2.fillRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                     }
                     g2.setColor(Color.gray);
                     g2.drawRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
+                    
+                }
+
+            }
+
+        }
+        if(memCells!=null){
+            for (int i=0; i<memCells.length; i++) {
+                for(int j=0; j<memCells[i].length; j++){
+                    if (memCells[i][j].hasBeenRevealed()==false){
+                        g2.setColor(Color.black);
+                        g2.fillRect(memCells[i][j].cellx, memCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
+                    }
+                    g2.setColor(Color.gray);
+                    g2.drawRect(memCells[i][j].cellx, memCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                 }
 
             }
@@ -104,7 +124,22 @@ public class GameBoardPanel extends javax.swing.JPanel{
         int arrayIndexX=(int)boardX;
         int arrayIndexY=(int)boardY;
         
-        msCells[arrayIndexX][arrayIndexY].revealCell();
+        try{
+            if (msCells==null){memCells[arrayIndexX][arrayIndexY].revealCell(); }
+            else{
+                if(!MineSweeperCells.lose){
+                    msCells[arrayIndexX][arrayIndexY].revealCell();
+                    if(msCells[arrayIndexX][arrayIndexY].isAMine()){
+                        MineSweeperCells.lose=true;
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("throw exception later");
+        }
+
+
         
         repaint();
         

@@ -14,11 +14,14 @@ public class MineSweeperCells extends BoardCell{
     private boolean isFlagged;
     private int adjMines;
     
+    public static boolean lose;
+    
     public MineSweeperCells(int x, int y){
         super(x, y);
         this.isMine=false;
         this.isFlagged=false;
         this.adjMines=0;
+        this.lose=false;
     }
     
     
@@ -56,5 +59,43 @@ public class MineSweeperCells extends BoardCell{
             }
         }
         return cells;
+    }
+    public static void placeMines(MineSweeperCells[][] cells, int numMines){
+        int minesPlaced=0;
+        while(minesPlaced<numMines){
+            int row= (int) (Math.random()*cells.length);
+            int col= (int) (Math.random()*cells.length);
+            
+            if(!cells[row][col].isAMine()){
+                cells[row][col].setMine(true);
+                minesPlaced++;
+                System.out.println("mine placed");
+            }
+            
+        }
+    }
+    
+    public static void findAdjMines(MineSweeperCells[][] cells){
+        int[] searchDirection= {-1, 0, 1};
+        for(int i=0; i<cells.length; i++){
+            for(int j=0; j<cells[i].length; j++){
+                if(!cells[i][j].isAMine()){
+                    int adjCounter=0;
+                    for(int changeX: searchDirection){
+                        for(int changeY: searchDirection){
+                            int checkNewI = i+changeX;
+                            int checkNewJ= j+changeY;
+                            if((checkNewI>=0 && checkNewI<cells.length)&&(checkNewJ>=0 && checkNewJ<cells[checkNewI].length)){
+                                if(cells[checkNewI][checkNewJ].isMine){
+                                    adjCounter++;
+                                    System.out.println("cell checked");
+                                }
+                            }
+                        }
+                    }
+                    cells[i][j].setAdjMines(adjCounter);
+                }
+            }
+        }
     }
 }

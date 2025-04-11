@@ -19,7 +19,7 @@ public class GameWin extends javax.swing.JFrame {
         this.memoryCells=memoryCells;
         this.mineSweeperCells=mineSweeperCells;
         //try makin two boards and disable the unused one
-        //gameBoard1.getCells(boardCells);
+        gameBoard.getCells(mineSweeperCells, memoryCells);
     }
 
     /**
@@ -32,8 +32,8 @@ public class GameWin extends javax.swing.JFrame {
     private void initComponents() {
 
         btnMineFlag = new javax.swing.JButton();
-        mineSweeperBoard = new com.mycompany.logicgamesfinalproject.GameBoardPanel();
         btnHome = new javax.swing.JButton();
+        gameBoard = new com.mycompany.logicgamesfinalproject.GameBoardPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,23 +44,23 @@ public class GameWin extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout mineSweeperBoardLayout = new javax.swing.GroupLayout(mineSweeperBoard);
-        mineSweeperBoard.setLayout(mineSweeperBoardLayout);
-        mineSweeperBoardLayout.setHorizontalGroup(
-            mineSweeperBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
-        );
-        mineSweeperBoardLayout.setVerticalGroup(
-            mineSweeperBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
-        );
-
         btnHome.setText("/home img/");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHomeActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout gameBoardLayout = new javax.swing.GroupLayout(gameBoard);
+        gameBoard.setLayout(gameBoardLayout);
+        gameBoardLayout.setHorizontalGroup(
+            gameBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        gameBoardLayout.setVerticalGroup(
+            gameBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 325, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,23 +69,23 @@ public class GameWin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 414, Short.MAX_VALUE)
                         .addComponent(btnMineFlag))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mineSweeperBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(gameBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(btnHome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mineSweeperBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(gameBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMineFlag)
                 .addGap(12, 12, 12))
@@ -140,6 +140,6 @@ public class GameWin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnMineFlag;
-    private com.mycompany.logicgamesfinalproject.GameBoardPanel mineSweeperBoard;
+    private com.mycompany.logicgamesfinalproject.GameBoardPanel gameBoard;
     // End of variables declaration//GEN-END:variables
 }
