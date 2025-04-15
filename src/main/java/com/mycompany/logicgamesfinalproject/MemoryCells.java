@@ -19,26 +19,27 @@ public class MemoryCells extends BoardCell{
         
     }
     
-        public static MemoryCells[][] makeGrid(int gridSize){
-            MemoryCells[][] cells= new MemoryCells[gridSize][gridSize];
-            for(int i=0;i<gridSize; i++){
-                for(int j=0; j<gridSize; j++){
-                    cells[i][j]=new MemoryCells(50*i, 50*j);
-                }
+    
+    public static MemoryCells[][] makeGrid(int gridSize){
+        MemoryCells[][] cells= new MemoryCells[gridSize][gridSize];
+        for(int i=0;i<gridSize; i++){
+            for(int j=0; j<gridSize; j++){
+                cells[i][j]=new MemoryCells(50*i, 50*j);
             }
-            return cells;
         }
-    
-    
-        public static void memoryCellValues(MemoryCells[][] cells, int gridSize){
+        return cells;
+    }
+
+
+    public static void memoryCellValues(MemoryCells[][] cells, int gridSize){
         int valuesAssigned=0;
         int value=1;
         int checkVal=0;
         while(valuesAssigned<(gridSize*gridSize)){
             int row= (int) (Math.random()*cells.length);
             int col= (int) (Math.random()*cells.length);
-            
-            
+
+
             checkVal++;
             if(checkVal%3==0){
                 checkVal=0;
@@ -51,7 +52,7 @@ public class MemoryCells extends BoardCell{
 
                }
             }
-            
+
         }
     }
 }
