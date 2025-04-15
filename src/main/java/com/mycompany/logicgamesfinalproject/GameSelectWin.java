@@ -34,7 +34,6 @@ public class GameSelectWin extends javax.swing.JFrame {
         for(int i=0; i<3; i++){
             stats.dtmStats.addRow(player.toString(i).split("\\|"));
         }
-        System.out.println(player.getGamesWon());
     }
     
     
@@ -46,7 +45,7 @@ public class GameSelectWin extends javax.swing.JFrame {
         String[] gameStats= null;
         
         try{
-            File file = new File("logicGames-"+lblUser.getText()+".txt");
+            File file = new File("logicGames-"+player.getName()+".txt");
             if(!file.exists()){
                 file.createNewFile();
             }
@@ -80,7 +79,7 @@ public class GameSelectWin extends javax.swing.JFrame {
             }
             player.setGamesPlayed(playedArr);
             player.setGamesWon(wonArr);
-            
+            player.saveStats();
 
         }
         catch(IOException ex){

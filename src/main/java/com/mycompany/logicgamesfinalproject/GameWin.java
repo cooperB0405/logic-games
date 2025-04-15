@@ -9,12 +9,12 @@ package com.mycompany.logicgamesfinalproject;
  * @author coope
  */
 public class GameWin extends javax.swing.JFrame {
-    private BoardCell[][] memoryCells;
+    private MemoryCells[][] memoryCells;
     private MineSweeperCells[][] mineSweeperCells;
     /**
      * Creates new form MineSweeperWin
      */
-    public GameWin(BoardCell[][] memoryCells, MineSweeperCells[][] mineSweeperCells) {
+    public GameWin(MemoryCells[][] memoryCells, MineSweeperCells[][] mineSweeperCells) {
         initComponents();
         this.memoryCells=memoryCells;
         this.mineSweeperCells=mineSweeperCells;
@@ -104,6 +104,9 @@ public class GameWin extends javax.swing.JFrame {
         //gameBoard1.left();
     }//GEN-LAST:event_btnMineFlagActionPerformed
 
+    public void hideFlagBtn(){
+        btnMineFlag.setVisible(false);
+    }
     /**
      * @param args the command line arguments
      */

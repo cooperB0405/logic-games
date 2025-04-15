@@ -14,13 +14,13 @@ public class BoardCell {
     public static int cellw=50;
     public static int cellh=50;
     private boolean isRevealed;
-    public int value;
+    private int value;
     
     public BoardCell(int x, int y){
         cellx=x;
         celly=y;
         isRevealed=false;
-        value=1;
+        value=0;
     }
     
     public boolean hasBeenRevealed(){
@@ -28,6 +28,13 @@ public class BoardCell {
     }
     public void revealCell(){
         this.isRevealed=true;
+    }
+    
+    public void setValue(int val){
+        this.value=val;
+    }
+    public int getValue(){
+        return this.value;
     }
     
     public static BoardCell[][] makeGrid(int gridSize){

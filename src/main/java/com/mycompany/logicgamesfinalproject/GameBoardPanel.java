@@ -54,6 +54,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
         if(memCells!=null){
             for (int i=0; i<memCells.length; i++) {
                 for(int j=0; j<memCells[i].length; j++){
+                    g2.drawString(Integer.toString(memCells[i][j].getValue()), memCells[i][j].cellx+(BoardCell.cellw/2)+5, memCells[i][j].celly+(BoardCell.cellh/2)+5);
                     if (memCells[i][j].hasBeenRevealed()==false){
                         g2.setColor(Color.black);
                         g2.fillRect(memCells[i][j].cellx, memCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
