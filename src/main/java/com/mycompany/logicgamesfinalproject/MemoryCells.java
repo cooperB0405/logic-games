@@ -32,27 +32,47 @@ public class MemoryCells extends BoardCell{
 
 
     public static void memoryCellValues(MemoryCells[][] cells, int gridSize){
-        int valuesAssigned=0;
+        int[] numsToAssign = new int[gridSize*gridSize];
         int value=1;
-        int checkVal=0;
-        while(valuesAssigned<(gridSize*gridSize)){
+        
+        for(int i=0; i<numsToAssign.length;i+=2){
+            numsToAssign[i]=value;
+            numsToAssign[i+1]=value;
+            value++;
+        }
+        for(int i=0; i<numsToAssign.length;i++){
             int row= (int) (Math.random()*cells.length);
             int col= (int) (Math.random()*cells.length);
+            if(cells[row][col].getValue()==0){
+                cells[row][col].setValue(numsToAssign[i]);
 
-
-            checkVal++;
-            if(checkVal%3==0){
-                checkVal=0;
-                value++;
             }
             else{
-                if(cells[row][col].getValue()==0){
-                cells[row][col].setValue(value);
-                valuesAssigned++;
-
-               }
+                i=i-1;
             }
-
         }
+//        int valuesAssigned=0;
+//        int value=1;
+//        int checkVal=0;
+//        //dont do while loop
+//        while(valuesAssigned<(gridSize*gridSize)){
+//            int row= (int) (Math.random()*cells.length);
+//            int col= (int) (Math.random()*cells.length);
+//
+//
+//            checkVal++;
+//            if(checkVal%3==0){
+//                checkVal=0;
+//                value++;
+//            }
+//            else{
+//                if(cells[row][col].getValue()==0){
+//                cells[row][col].setValue(value);
+//                valuesAssigned++;
+//
+//               }
+//            }
+//
+//        }
     }
 }
