@@ -30,6 +30,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
         //alter game board
         if(game==1){
             
+            Player.getPlayer("").saveStats();
             int numMines=0;
             if(difficulty==diff.EASY){
                 gridSize=7;

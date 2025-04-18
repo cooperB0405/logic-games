@@ -13,35 +13,43 @@ import java.util.ArrayList;
  * @author coope
  */
 public class Player {
+    public static Player p;
+    
     private String name;
     private int[] gamesPlayed;
     private int[] gamesWon;
 
     public static final String[] gameList={"Mine Sweeper", "Memory", "Third"};
     
-    public Player(String name){
+    private Player(String name){
         this.name=name;
-
-        
-        
+        gamesPlayed=new int[gameList.length];
+        gamesWon=new int[gameList.length];
+    }
+    
+    public static Player getPlayer(String name){
+        if(p==null){
+            p= new Player(name);
+        }
+        return p;
     }
     
     public String getName(){
         return this.name;
     }
     
-    public void setGamesPlayed(int[] gamesPlayed){
-        this.gamesPlayed=gamesPlayed;
+    public void setGamesPlayed(int gamesPlayed, int index){
+        this.gamesPlayed[index]=gamesPlayed;
     }
-    public void setGamesWon(int[] gamesWon){
-        this.gamesWon=gamesWon;
+    public void setGamesWon(int gamesWon, int index){
+        this.gamesWon[index]=gamesWon;
     }
     
-    public int[] getGamesPlayed(){
-        return this.gamesPlayed;
+    public int getGamesPlayed(int index){
+        return this.gamesPlayed[index];
     }
-    public int[] getGamesWon(){
-        return this.gamesWon;
+    public int getGamesWon(int index){
+        return this.gamesWon[index];
     }
     
     public String toString(int i){

@@ -28,11 +28,11 @@ public class GameSelectWin extends javax.swing.JFrame {
         initComponents();
         
         this.lblUser.setText(userName);
-        Player player= new Player(userName);
+        Player.getPlayer(userName);
         stats=new UserStatsWin();
-        getStats(player);
+        getStats(Player.getPlayer(userName));
         for(int i=0; i<3; i++){
-            stats.dtmStats.addRow(player.toString(i).split("\\|"));
+            stats.dtmStats.addRow(Player.getPlayer(userName).toString(i).split("\\|"));
         }
     }
     
@@ -77,8 +77,11 @@ public class GameSelectWin extends javax.swing.JFrame {
                     System.out.println(gameStats[i]);
                 }
             }
-            player.setGamesPlayed(playedArr);
-            player.setGamesWon(wonArr);
+            for(int i=0; i<playedArr.length;i++){
+                player.setGamesPlayed(playedArr[i], i);
+                player.setGamesWon(wonArr[i], i);
+            }
+
             player.saveStats();
 
         }
