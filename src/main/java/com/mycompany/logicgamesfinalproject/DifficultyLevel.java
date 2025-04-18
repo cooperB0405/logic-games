@@ -47,6 +47,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
             msCells= MineSweeperCells.makeGrid(gridSize);
             MineSweeperCells.placeMines(msCells, numMines);
             MineSweeperCells.findAdjMines(msCells);
+            
         }
         else if(game==2){
             Player.getPlayer("").setGamesPlayed(Player.getPlayer("").getGamesPlayed(game-1)+1, game-1);

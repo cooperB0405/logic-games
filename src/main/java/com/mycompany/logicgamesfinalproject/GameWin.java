@@ -22,6 +22,10 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         this.mineSweeperCells=mineSweeperCells;
         //try makin two boards and disable the unused one
         gameBoard.getCells(mineSweeperCells, memoryCells);
+        if(mineSweeperCells!=null){
+            MineSweeperCells.setNumFlags(MineSweeperCells.numMinesInGrid);
+            gameBoard.getActions(MineSweeperCells.getNumFlagged());
+        }
         gameBoard.addUpdatable(this);
     }
     @Override

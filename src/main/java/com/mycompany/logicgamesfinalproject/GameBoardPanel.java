@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author coope
  */
 public class GameBoardPanel extends javax.swing.JPanel{
-
+    private int actions;
     
     private MineSweeperCells[][] msCells;
     private BoardCell[][] memCells;
@@ -27,6 +27,8 @@ public class GameBoardPanel extends javax.swing.JPanel{
     public GameBoardPanel() {
         initComponents();
         flagOn=false;
+        actions=0;
+        
         
     }
     
@@ -96,6 +98,9 @@ public class GameBoardPanel extends javax.swing.JPanel{
         this.memCells=memCells;
     }
     
+    public void getActions(int actions){
+        this.actions=actions;
+    }
 
 
     /**

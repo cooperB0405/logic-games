@@ -16,7 +16,9 @@ public class MineSweeperCells extends BoardCell{
     
     public static boolean lose;
     
-    private static int numCellsFlagged=0;
+    private static int numFlagsRemain;
+    
+    public static int numMinesInGrid;
     
     public MineSweeperCells(int x, int y){
         super(x, y);
@@ -46,10 +48,13 @@ public class MineSweeperCells extends BoardCell{
     }
     
     public static void cellFlagged(){
-        numCellsFlagged++;
+        numFlagsRemain--;
     }
-    public int getNumFlagged(){
-        return numCellsFlagged;
+    public static void setNumFlags(int numFlags){
+        numFlagsRemain=numFlags;
+    }
+    public static int getNumFlagged(){
+        return numFlagsRemain;
     }
     
     public int getAdjMines(){
@@ -70,6 +75,7 @@ public class MineSweeperCells extends BoardCell{
         return cells;
     }
     public static void placeMines(MineSweeperCells[][] cells, int numMines){
+        numMinesInGrid=numMines;
         int minesPlaced=0;
         while(minesPlaced<numMines){
             int row= (int) (Math.random()*cells.length);
