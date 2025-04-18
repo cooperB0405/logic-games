@@ -17,12 +17,18 @@ public class GameBoardPanel extends javax.swing.JPanel{
     
     private MineSweeperCells[][] msCells;
     private BoardCell[][] memCells;
+    private boolean flagOn;
     /**
      * Creates new form GameBoard
      */
     public GameBoardPanel() {
         initComponents();
+        flagOn=false;
         
+    }
+    
+    public void flagChange(){
+        flagOn=!flagOn;
     }
     
     @Override
@@ -37,10 +43,19 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         g2.drawString("M", msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
                     }
                     else{g2.drawString(Integer.toString(msCells[i][j].getAdjMines()), 
-                            msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);}
+                            msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
+                    }
+                    
+                    //covers cell info if it hasnt been revealed
                     if (msCells[i][j].hasBeenRevealed()==false){
                         g2.setColor(Color.black);
                         g2.fillRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
+                        if(msCells[i][j].hasBeenFlagged()){
+                            g2.setColor(Color.orange);
+                            g2.drawString("flag", msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
+                        }
+                        
+                        
                     }
                     g2.setColor(Color.gray);
                     g2.drawRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
@@ -120,10 +135,16 @@ public class GameBoardPanel extends javax.swing.JPanel{
             if (msCells==null){memCells[arrayIndexX][arrayIndexY].revealCell(); }
             else{
                 if(!MineSweeperCells.lose){
-                    msCells[arrayIndexX][arrayIndexY].revealCell();
-                    if(msCells[arrayIndexX][arrayIndexY].isAMine()){
-                        MineSweeperCells.lose=true;
+                    if(!flagOn){
+                        msCells[arrayIndexX][arrayIndexY].revealCell();
+                        if(msCells[arrayIndexX][arrayIndexY].isAMine()){
+                            MineSweeperCells.lose=true;
+                        }
                     }
+                    else{
+                        msCells[arrayIndexX][arrayIndexY].changeFlag();
+                    }
+
                 }
             }
         }

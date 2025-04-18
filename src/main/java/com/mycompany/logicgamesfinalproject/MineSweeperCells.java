@@ -16,6 +16,8 @@ public class MineSweeperCells extends BoardCell{
     
     public static boolean lose;
     
+    private static int numCellsFlagged=0;
+    
     public MineSweeperCells(int x, int y){
         super(x, y);
         this.isMine=false;
@@ -39,8 +41,15 @@ public class MineSweeperCells extends BoardCell{
     public boolean hasBeenFlagged(){
         return this.isFlagged;
     }
-    public void flag(){
-        this.isFlagged=true;
+    public void changeFlag(){
+        this.isFlagged=!this.isFlagged;
+    }
+    
+    public static void cellFlagged(){
+        numCellsFlagged++;
+    }
+    public int getNumFlagged(){
+        return numCellsFlagged;
     }
     
     public int getAdjMines(){

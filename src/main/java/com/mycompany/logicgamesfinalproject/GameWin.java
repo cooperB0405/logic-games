@@ -101,7 +101,7 @@ public class GameWin extends javax.swing.JFrame {
 
     private void btnMineFlagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMineFlagActionPerformed
         // TODO add your handling code here:
-        //gameBoard1.left();
+        gameBoard.flagChange();
     }//GEN-LAST:event_btnMineFlagActionPerformed
 
     public void hideFlagBtn(){

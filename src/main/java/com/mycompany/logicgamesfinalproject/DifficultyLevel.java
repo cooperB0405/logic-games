@@ -29,7 +29,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
         
         //alter game board
         if(game==1){
-            Player.getPlayer("").setGamesPlayed(Player.getPlayer("").getGamesPlayed(0)+1, 0);
+            Player.getPlayer("").setGamesPlayed(Player.getPlayer("").getGamesPlayed(game-1)+1, game-1);
             Player.getPlayer("").saveStats();
             int numMines=0;
             if(difficulty==diff.EASY){
@@ -49,14 +49,16 @@ public class DifficultyLevel extends javax.swing.JFrame {
             MineSweeperCells.findAdjMines(msCells);
         }
         else if(game==2){
+            Player.getPlayer("").setGamesPlayed(Player.getPlayer("").getGamesPlayed(game-1)+1, game-1);
+            Player.getPlayer("").saveStats();
             if(difficulty==diff.EASY){
                 gridSize=4;
             }
             else if(difficulty==diff.MEDIUM){
-                gridSize=5;
+                gridSize=6;
             }
             else if(difficulty==diff.HARD){
-                gridSize=6;
+                gridSize=8;
             }
             memCells= MemoryCells.makeGrid(gridSize);
             MemoryCells.memoryCellValues(memCells, gridSize);

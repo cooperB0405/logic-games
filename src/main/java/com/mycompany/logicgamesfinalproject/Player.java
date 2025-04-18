@@ -115,8 +115,8 @@ public class Player {
                 
                 
                 inputStream.close();
-                playedArr= new int[3];
-                wonArr= new int[3];
+                playedArr= new int[gameList.length];
+                wonArr= new int[gameList.length];
                 for(int i=0; i<gameStats.length; i++){
                     if(i<3){
                         playedArr[i]=Integer.parseInt(gameStats[i]);
