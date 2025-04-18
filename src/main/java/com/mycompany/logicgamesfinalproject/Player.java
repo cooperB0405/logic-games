@@ -4,8 +4,12 @@
  */
 package com.mycompany.logicgamesfinalproject;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -78,10 +82,61 @@ public class Player {
         catch(Exception e){
             System.out.println("catch");
         }
-        
-        
-        
                 
+    }
+    
+    
+    
+    
+    public static void getStats(Player player){
+        
+      
+        BufferedReader inputStream = null;
+        String[] gameStats= null;
+        
+        try{
+            File file = new File("logicGames-"+player.getName()+".txt");
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            inputStream = new BufferedReader(new FileReader(file));
+            String l;
+            int[] playedArr;
+            int[] wonArr;
+            l = inputStream.readLine();
+            if(l==null){
+                playedArr= new int[]{0, 0, 0};
+                wonArr= new int[]{0, 0, 0};
+            }
+            else{
+               
+                gameStats=l.split("\\|");
+                    
+                
+                
+                inputStream.close();
+                playedArr= new int[3];
+                wonArr= new int[3];
+                for(int i=0; i<gameStats.length; i++){
+                    if(i<3){
+                        playedArr[i]=Integer.parseInt(gameStats[i]);
+                    }
+                    else{
+                        wonArr[i-3]=Integer.parseInt(gameStats[i]);
+                    }
+                }
+            }
+            for(int i=0; i<playedArr.length;i++){
+                player.setGamesPlayed(playedArr[i], i);
+                player.setGamesWon(wonArr[i], i);
+            }
+
+            player.saveStats();
+
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
     }
     
 }

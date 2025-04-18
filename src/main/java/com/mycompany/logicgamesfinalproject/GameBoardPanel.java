@@ -13,8 +13,7 @@ import java.awt.Graphics2D;
  * @author coope
  */
 public class GameBoardPanel extends javax.swing.JPanel{
-    private int rectx=50;
-    private int recty=50;
+
     
     private MineSweeperCells[][] msCells;
     private BoardCell[][] memCells;
@@ -67,7 +66,6 @@ public class GameBoardPanel extends javax.swing.JPanel{
 
         }
 
-        g2.drawRect(rectx, recty, 50, 50);
     }
     
 
@@ -76,14 +74,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
         this.memCells=memCells;
     }
     
-    public void left(){
-        rectx=rectx-30;
-        repaint();
-    }
-        public void right(){
-        rectx=rectx+30;
-        repaint();
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

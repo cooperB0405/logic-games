@@ -30,65 +30,6 @@ public class GameSelectWin extends javax.swing.JFrame {
         Player.getPlayer(userName);
 
     }
-    
-    
-    
-    public void getStats(Player player){
-        
-      
-        BufferedReader inputStream = null;
-        String[] gameStats= null;
-        
-        try{
-            File file = new File("logicGames-"+player.getName()+".txt");
-            if(!file.exists()){
-                file.createNewFile();
-            }
-            inputStream = new BufferedReader(new FileReader(file));
-            String l;
-            int[] playedArr;
-            int[] wonArr;
-            l = inputStream.readLine();
-            if(l==null){
-                playedArr= new int[]{0, 0, 0};
-                wonArr= new int[]{0, 0, 0};
-            }
-            else{
-               
-                gameStats=l.split("\\|");
-                    
-                
-                
-                inputStream.close();
-                playedArr= new int[3];
-                wonArr= new int[3];
-                for(int i=0; i<gameStats.length; i++){
-                    if(i<3){
-                        playedArr[i]=Integer.parseInt(gameStats[i]);
-                    }
-                    else{
-                        wonArr[i-3]=Integer.parseInt(gameStats[i]);
-                    }
-                    System.out.println(gameStats[i]);
-                }
-            }
-            for(int i=0; i<playedArr.length;i++){
-                player.setGamesPlayed(playedArr[i], i);
-                player.setGamesWon(wonArr[i], i);
-            }
-
-            player.saveStats();
-
-        }
-        catch(IOException ex){
-            ex.printStackTrace();
-        }
-        
-        
-        
-        
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -218,7 +159,7 @@ public class GameSelectWin extends javax.swing.JFrame {
         UserStatsWin stats;
         DefaultTableModel dtmStats;
         stats=new UserStatsWin();
-        getStats(Player.getPlayer(""));
+        Player.getStats(Player.getPlayer(""));
         for(int i=0; i<3; i++){
             stats.dtmStats.addRow(Player.getPlayer("").toString(i).split("\\|"));
         }
