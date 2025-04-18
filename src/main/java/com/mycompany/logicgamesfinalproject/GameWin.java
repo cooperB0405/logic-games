@@ -4,11 +4,13 @@
  */
 package com.mycompany.logicgamesfinalproject;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author coope
  */
-public class GameWin extends javax.swing.JFrame {
+public class GameWin extends javax.swing.JFrame implements Updatable {
     private MemoryCells[][] memoryCells;
     private MineSweeperCells[][] mineSweeperCells;
     /**
@@ -20,6 +22,12 @@ public class GameWin extends javax.swing.JFrame {
         this.mineSweeperCells=mineSweeperCells;
         //try makin two boards and disable the unused one
         gameBoard.getCells(mineSweeperCells, memoryCells);
+        gameBoard.addUpdatable(this);
+    }
+    @Override
+    public void update(boolean lose){
+        JOptionPane.showMessageDialog(null, "You Clicked On A Mine", "You Lose",JOptionPane.ERROR_MESSAGE);
+        this.setVisible(false);
     }
 
     /**
@@ -104,6 +112,7 @@ public class GameWin extends javax.swing.JFrame {
         gameBoard.flagChange();
     }//GEN-LAST:event_btnMineFlagActionPerformed
 
+    
     public void hideFlagBtn(){
         btnMineFlag.setVisible(false);
     }

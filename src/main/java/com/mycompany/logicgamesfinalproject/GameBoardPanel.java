@@ -7,6 +7,8 @@ package com.mycompany.logicgamesfinalproject;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +20,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
     private MineSweeperCells[][] msCells;
     private BoardCell[][] memCells;
     private boolean flagOn;
+    private ArrayList<Updatable> observerList= new ArrayList<>();
     /**
      * Creates new form GameBoard
      */
@@ -25,6 +28,10 @@ public class GameBoardPanel extends javax.swing.JPanel{
         initComponents();
         flagOn=false;
         
+    }
+    
+    public void addUpdatable(Updatable observer){
+        observerList.add(observer);
     }
     
     public void flagChange(){
@@ -139,6 +146,10 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         msCells[arrayIndexX][arrayIndexY].revealCell();
                         if(msCells[arrayIndexX][arrayIndexY].isAMine()){
                             MineSweeperCells.lose=true;
+                            repaint();
+                            for(int i=0; i< observerList.size(); i++){
+                                observerList.get(i).update(MineSweeperCells.lose);
+                            }
                         }
                     }
                     else{
