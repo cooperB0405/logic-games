@@ -29,7 +29,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
         
         //alter game board
         if(game==1){
-            
+            Player.getPlayer("").setGamesPlayed(Player.getPlayer("").getGamesPlayed(0)+1, 0);
             Player.getPlayer("").saveStats();
             int numMines=0;
             if(difficulty==diff.EASY){

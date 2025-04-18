@@ -16,8 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GameSelectWin extends javax.swing.JFrame {
     
-    private UserStatsWin stats;
-    private DefaultTableModel dtmStats;
+
 
             
 
@@ -29,11 +28,7 @@ public class GameSelectWin extends javax.swing.JFrame {
         
         this.lblUser.setText(userName);
         Player.getPlayer(userName);
-        stats=new UserStatsWin();
-        getStats(Player.getPlayer(userName));
-        for(int i=0; i<3; i++){
-            stats.dtmStats.addRow(Player.getPlayer(userName).toString(i).split("\\|"));
-        }
+
     }
     
     
@@ -220,6 +215,13 @@ public class GameSelectWin extends javax.swing.JFrame {
 
     private void btnStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsActionPerformed
         // TODO add your handling code here:
+        UserStatsWin stats;
+        DefaultTableModel dtmStats;
+        stats=new UserStatsWin();
+        getStats(Player.getPlayer(""));
+        for(int i=0; i<3; i++){
+            stats.dtmStats.addRow(Player.getPlayer("").toString(i).split("\\|"));
+        }
         stats.setVisible(true);
     }//GEN-LAST:event_btnStatsActionPerformed
 
