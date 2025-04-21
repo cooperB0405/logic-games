@@ -12,6 +12,7 @@ public class MemoryCells extends BoardCell{
     
     private MemoryCells[] selected= new MemoryCells[2];
     private int value;
+    private static int moves;
     
     public MemoryCells(int x, int y){
         super(x, y);
@@ -51,28 +52,16 @@ public class MemoryCells extends BoardCell{
                 i=i-1;
             }
         }
-//        int valuesAssigned=0;
-//        int value=1;
-//        int checkVal=0;
-//        //dont do while loop
-//        while(valuesAssigned<(gridSize*gridSize)){
-//            int row= (int) (Math.random()*cells.length);
-//            int col= (int) (Math.random()*cells.length);
-//
-//
-//            checkVal++;
-//            if(checkVal%3==0){
-//                checkVal=0;
-//                value++;
-//            }
-//            else{
-//                if(cells[row][col].getValue()==0){
-//                cells[row][col].setValue(value);
-//                valuesAssigned++;
-//
-//               }
-//            }
-//
-//        }
+    }
+    
+    public static void setMoves(int movesToMake){
+        moves=movesToMake;
+    }
+    public static int getMoves(){
+        return moves;
+    }
+    
+    public static void moveMade(){
+        moves--;
     }
 }

@@ -15,10 +15,9 @@ import javax.swing.JOptionPane;
  * @author coope
  */
 public class GameBoardPanel extends javax.swing.JPanel{
-    private int actions;
     
     private MineSweeperCells[][] msCells;
-    private BoardCell[][] memCells;
+    private MemoryCells[][] memCells;
     private boolean flagOn;
     private ArrayList<Updatable> observerList= new ArrayList<>();
     /**
@@ -27,8 +26,6 @@ public class GameBoardPanel extends javax.swing.JPanel{
     public GameBoardPanel() {
         initComponents();
         flagOn=false;
-        actions=0;
-        
         
     }
     
@@ -43,9 +40,11 @@ public class GameBoardPanel extends javax.swing.JPanel{
     @Override
     public void paint(Graphics g){
         super.paint(g);
-        
         Graphics2D g2= (Graphics2D)g;
+        
+        
         if(msCells!=null){
+            //drawing mineSweeper
             for (int i=0; i<msCells.length; i++) {
                 for(int j=0; j<msCells[i].length; j++){
                     if(msCells[i][j].isAMine()){
@@ -75,6 +74,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
 
         }
         if(memCells!=null){
+            //drawing memory
             for (int i=0; i<memCells.length; i++) {
                 for(int j=0; j<memCells[i].length; j++){
                     g2.drawString(Integer.toString(memCells[i][j].getValue()), memCells[i][j].cellx+(BoardCell.cellw/2)+5, memCells[i][j].celly+(BoardCell.cellh/2)+5);
@@ -93,14 +93,12 @@ public class GameBoardPanel extends javax.swing.JPanel{
     }
     
 
-    public void getCells(MineSweeperCells[][] msCells, BoardCell[][] memCells){
+    public void getCells(MineSweeperCells[][] msCells, MemoryCells[][] memCells){
         this.msCells=msCells;
         this.memCells=memCells;
     }
     
-    public void getActions(int actions){
-        this.actions=actions;
-    }
+
 
 
     /**
@@ -146,7 +144,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
         try{
             if (msCells==null){memCells[arrayIndexX][arrayIndexY].revealCell(); }
             else{
-                if(!MineSweeperCells.lose){
+                if(!MineSweeperCells.lose && MineSweeperCells.getNumFlagsRemaining()!=0){
                     if(!flagOn){
                         msCells[arrayIndexX][arrayIndexY].revealCell();
                         if(msCells[arrayIndexX][arrayIndexY].isAMine()){
@@ -159,6 +157,10 @@ public class GameBoardPanel extends javax.swing.JPanel{
                     }
                     else{
                         msCells[arrayIndexX][arrayIndexY].changeFlag();
+                        //call check win and if false tell you have not flagged all mines
+                        for(int i=0; i<observerList.size(); i++){
+                            observerList.get(i).update(MineSweeperCells.getNumFlagsRemaining());
+                        }
                     }
 
                 }

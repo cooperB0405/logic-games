@@ -11,4 +11,6 @@ package com.mycompany.logicgamesfinalproject;
 public interface Updatable {
     
     public void update(boolean lose);
+    
+    public void update(int actionsLeft);
 }

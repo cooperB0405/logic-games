@@ -63,6 +63,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
             }
             memCells= MemoryCells.makeGrid(gridSize);
             MemoryCells.memoryCellValues(memCells, gridSize);
+            MemoryCells.setMoves(((gridSize*gridSize)/2)+(gridSize/2));
         }
         //use the math for the cells to figure out where the mouse is clickedd
         

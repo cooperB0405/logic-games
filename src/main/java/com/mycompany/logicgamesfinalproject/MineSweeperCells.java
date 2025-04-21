@@ -44,13 +44,17 @@ public class MineSweeperCells extends BoardCell{
         return this.isFlagged;
     }
     public void changeFlag(){
+        if(this.isFlagged){
+            this.cellUnFlagged();
+        }
+        else{this.cellFlagged();}
         this.isFlagged=!this.isFlagged;
     }
     
     public static void cellFlagged(){
         numFlagsRemain--;
     }
-    public static void cellUnflagged(){
+    public static void cellUnFlagged(){
         numFlagsRemain++;
     }
     public static void setNumFlags(int numFlags){
@@ -116,4 +120,20 @@ public class MineSweeperCells extends BoardCell{
             }
         }
     }
+    
+    public static boolean checkWin(MineSweeperCells[][] cells, int mines){
+        boolean win=false;
+        int minesFlaggedCounter=0;
+        
+        
+        for(MineSweeperCells[] row: cells){
+            for(MineSweeperCells cell: row){
+                if(cell.isMine && cell.isFlagged){
+                    win=true;
+                }
+            }
+        }
+        
+        return win;
+    } 
 }
