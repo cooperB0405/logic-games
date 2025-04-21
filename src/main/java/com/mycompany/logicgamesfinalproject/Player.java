@@ -23,7 +23,7 @@ public class Player {
     private int[] gamesPlayed;
     private int[] gamesWon;
 
-    public static final String[] gameList={"Mine Sweeper", "Memory", "Third"};
+    public static final String[] gameList={"Mine Sweeper", "Memory"};
     
     private Player(String name){
         this.name=name;
@@ -67,10 +67,10 @@ public class Player {
         String dataToAdd="";
         for(int i=0; i<2; i++){
             if(i==0){
-                dataToAdd= played[0]+"|"+played[1]+"|"+played[2]+"|";
+                dataToAdd= played[0]+"|"+played[1]+"|";
             }
             else{
-                dataToAdd=dataToAdd+won[0]+"|"+won[1]+"|"+won[2];
+                dataToAdd=dataToAdd+won[0]+"|"+won[1];
             }
         }
         
@@ -105,8 +105,8 @@ public class Player {
             int[] wonArr;
             l = inputStream.readLine();
             if(l==null){
-                playedArr= new int[]{0, 0, 0};
-                wonArr= new int[]{0, 0, 0};
+                playedArr= new int[]{0, 0};
+                wonArr= new int[]{0, 0};
             }
             else{
                
@@ -117,12 +117,10 @@ public class Player {
                 inputStream.close();
                 playedArr= new int[gameList.length];
                 wonArr= new int[gameList.length];
-                for(int i=0; i<gameStats.length; i++){
-                    if(i<3){
+                for(int i=0; i<gameList.length; i++){
+                    if(i<gameList.length){
                         playedArr[i]=Integer.parseInt(gameStats[i]);
-                    }
-                    else{
-                        wonArr[i-3]=Integer.parseInt(gameStats[i]);
+                        wonArr[i]=Integer.parseInt(gameStats[i+gameList.length]);
                     }
                 }
             }

@@ -24,7 +24,6 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         gameBoard.getCells(mineSweeperCells, memoryCells);
         if(mineSweeperCells!=null){
             MineSweeperCells.setNumFlags(MineSweeperCells.numMinesInGrid);
-            gameBoard.getActions(MineSweeperCells.getNumFlagged());
         }
         gameBoard.addUpdatable(this);
     }

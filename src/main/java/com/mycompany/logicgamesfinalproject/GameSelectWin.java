@@ -43,7 +43,6 @@ public class GameSelectWin extends javax.swing.JFrame {
         lblGameSelect = new javax.swing.JLabel();
         btnMineSweeper = new javax.swing.JButton();
         btnMemory = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         lblCurrentUser = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
         btnStats = new javax.swing.JButton();
@@ -64,13 +63,6 @@ public class GameSelectWin extends javax.swing.JFrame {
         btnMemory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMemoryActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -101,18 +93,14 @@ public class GameSelectWin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnStats, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(btnMineSweeper)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnMemory)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(112, 112, 112)
-                                .addComponent(lblGameSelect)))
-                        .addGap(0, 11, Short.MAX_VALUE)))
+                        .addGap(112, 112, 112)
+                        .addComponent(lblGameSelect)
+                        .addGap(0, 119, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnMineSweeper)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMemory)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -131,8 +119,7 @@ public class GameSelectWin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMineSweeper)
-                    .addComponent(btnMemory)
-                    .addComponent(jButton3))
+                    .addComponent(btnMemory))
                 .addContainerGap())
         );
 
@@ -160,17 +147,11 @@ public class GameSelectWin extends javax.swing.JFrame {
         DefaultTableModel dtmStats;
         stats=new UserStatsWin();
         Player.getStats(Player.getPlayer(""));
-        for(int i=0; i<3; i++){
+        for(int i=0; i<2; i++){
             stats.dtmStats.addRow(Player.getPlayer("").toString(i).split("\\|"));
         }
         stats.setVisible(true);
     }//GEN-LAST:event_btnStatsActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        DifficultyLevel diffLev= new DifficultyLevel(3);
-        diffLev.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,7 +200,6 @@ public class GameSelectWin extends javax.swing.JFrame {
     private javax.swing.JButton btnMemory;
     private javax.swing.JButton btnMineSweeper;
     private javax.swing.JButton btnStats;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel lblCurrentUser;
     private javax.swing.JLabel lblGameSelect;
     private javax.swing.JLabel lblStats;

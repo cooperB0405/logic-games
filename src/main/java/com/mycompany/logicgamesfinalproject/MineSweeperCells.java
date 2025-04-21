@@ -50,10 +50,13 @@ public class MineSweeperCells extends BoardCell{
     public static void cellFlagged(){
         numFlagsRemain--;
     }
+    public static void cellUnflagged(){
+        numFlagsRemain++;
+    }
     public static void setNumFlags(int numFlags){
         numFlagsRemain=numFlags;
     }
-    public static int getNumFlagged(){
+    public static int getNumFlagsRemaining(){
         return numFlagsRemain;
     }
     
