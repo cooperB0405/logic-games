@@ -51,6 +51,9 @@ public class MineSweeperCells extends BoardCell{
         this.isFlagged=!this.isFlagged;
     }
     
+    
+    
+    //methods for flags
     public static void cellFlagged(){
         numFlagsRemain--;
     }
@@ -129,9 +132,12 @@ public class MineSweeperCells extends BoardCell{
         for(MineSweeperCells[] row: cells){
             for(MineSweeperCells cell: row){
                 if(cell.isMine && cell.isFlagged){
-                    win=true;
+                    minesFlaggedCounter++;
                 }
             }
+        }
+        if(minesFlaggedCounter==mines){
+            win=true;
         }
         
         return win;

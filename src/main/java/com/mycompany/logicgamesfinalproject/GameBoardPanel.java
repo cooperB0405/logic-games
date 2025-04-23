@@ -144,8 +144,8 @@ public class GameBoardPanel extends javax.swing.JPanel{
         try{
             if (msCells==null){memCells[arrayIndexX][arrayIndexY].revealCell(); }
             else{
-                if(!MineSweeperCells.lose && MineSweeperCells.getNumFlagsRemaining()!=0){
-                    if(!flagOn){
+                if(!MineSweeperCells.lose ){
+                    if(!flagOn && MineSweeperCells.getNumFlagsRemaining()!=0){
                         msCells[arrayIndexX][arrayIndexY].revealCell();
                         if(msCells[arrayIndexX][arrayIndexY].isAMine()){
                             MineSweeperCells.lose=true;
@@ -156,10 +156,25 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         }
                     }
                     else{
-                        msCells[arrayIndexX][arrayIndexY].changeFlag();
+                        if(MineSweeperCells.getNumFlagsRemaining()== 0){
+                            flagOn=true;
+                            if(msCells[arrayIndexX][arrayIndexY].hasBeenFlagged()){
+                                msCells[arrayIndexX][arrayIndexY].changeFlag();
+                            }
+                        }
+                        else{msCells[arrayIndexX][arrayIndexY].changeFlag();}
                         //call check win and if false tell you have not flagged all mines
                         for(int i=0; i<observerList.size(); i++){
                             observerList.get(i).update(MineSweeperCells.getNumFlagsRemaining());
+                        }
+                        if(MineSweeperCells.getNumFlagsRemaining()==0){
+                            repaint();
+                            if(MineSweeperCells.checkWin(msCells, MineSweeperCells.numMinesInGrid)){
+                                //post you won
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(null, "All Mines Are Not Flagged, Unflag And Try Again", "Try Again",JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                     }
 

@@ -114,7 +114,7 @@ public class Player {
                     
                 
                 
-                inputStream.close();
+
                 playedArr= new int[gameList.length];
                 wonArr= new int[gameList.length];
                 for(int i=0; i<gameList.length; i++){
@@ -124,6 +124,7 @@ public class Player {
                     }
                 }
             }
+            inputStream.close();
             for(int i=0; i<playedArr.length;i++){
                 player.setGamesPlayed(playedArr[i], i);
                 player.setGamesWon(wonArr[i], i);
