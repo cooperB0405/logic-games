@@ -4,20 +4,19 @@
  */
 package com.mycompany.logicgamesfinalproject;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author coope
  */
 public class MemoryCells extends BoardCell{
     
-    private MemoryCells[] selected= new MemoryCells[2];
-    private int value;
+    public static ArrayList<MemoryCells> selected =new ArrayList<>();
     private static int moves;
     
     public MemoryCells(int x, int y){
         super(x, y);
-        this.value=0;
-        
     }
     
     
@@ -52,6 +51,21 @@ public class MemoryCells extends BoardCell{
                 i=i-1;
             }
         }
+    }
+    
+    public static boolean checkWin(MemoryCells[][] cells){
+        boolean win=true;
+        
+        for(MemoryCells[] row: cells){
+            for(MemoryCells cell: row){
+                if(!cell.hasBeenRevealed()){
+                    win=false;
+                    break;
+                }
+            }
+        }
+        
+        return win;
     }
     
     public static void setMoves(int movesToMake){

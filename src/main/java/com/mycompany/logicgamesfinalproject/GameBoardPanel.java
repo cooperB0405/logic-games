@@ -132,6 +132,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
+        //gets mouse click and what cell was clicked
         int mouseX=evt.getX();
         int mouseY=evt.getY();
         double boardX=mouseX/BoardCell.cellw;
@@ -142,7 +143,22 @@ public class GameBoardPanel extends javax.swing.JPanel{
         int arrayIndexY=(int)boardY;
         
         try{
-            if (msCells==null){memCells[arrayIndexX][arrayIndexY].revealCell(); }
+            if (msCells==null){
+                memCells[arrayIndexX][arrayIndexY].revealCell();
+                MemoryCells.selected.add(memCells[arrayIndexX][arrayIndexY]);
+                if(MemoryCells.selected.size()==2){
+                    if(MemoryCells.selected.get(0).getValue()!=MemoryCells.selected.get(1).getValue()){
+                        MemoryCells.selected.get(0).hideCell();
+                        MemoryCells.selected.get(1).hideCell();
+                    }
+                    MemoryCells.selected.clear();
+                    MemoryCells.moveMade();
+                    if(MemoryCells.checkWin(memCells)){
+                        //you win
+                    }
+                }
+            
+            }
             else{
                 if(!MineSweeperCells.lose ){
                     if(!flagOn && MineSweeperCells.getNumFlagsRemaining()!=0){

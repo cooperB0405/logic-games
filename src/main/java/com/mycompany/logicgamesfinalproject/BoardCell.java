@@ -30,6 +30,10 @@ public class BoardCell {
         this.isRevealed=true;
     }
     
+    public void hideCell(){
+        this.isRevealed=false;
+    }
+    
     public void setValue(int val){
         this.value=val;
     }
