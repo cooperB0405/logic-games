@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author coope
  */
 public class GameSelectWin extends javax.swing.JFrame {
-    
+    private Player p;
 
 
             
@@ -27,7 +27,8 @@ public class GameSelectWin extends javax.swing.JFrame {
         initComponents();
         
         this.lblUser.setText(userName);
-        Player.getPlayer(userName);
+        p = Player.getPlayer(userName);
+        Player.getStats(p);
 
     }
 
@@ -146,9 +147,9 @@ public class GameSelectWin extends javax.swing.JFrame {
         UserStatsWin stats;
         DefaultTableModel dtmStats;
         stats=new UserStatsWin();
-        Player.getStats(Player.getPlayer(""));
+        Player.getStats(p);
         for(int i=0; i<2; i++){
-            stats.dtmStats.addRow(Player.getPlayer("").toString(i).split("\\|"));
+            stats.dtmStats.addRow(p.toString(i).split("\\|"));
         }
         stats.setVisible(true);
     }//GEN-LAST:event_btnStatsActionPerformed
