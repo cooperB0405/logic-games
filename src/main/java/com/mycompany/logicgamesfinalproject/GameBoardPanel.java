@@ -143,13 +143,28 @@ public class GameBoardPanel extends javax.swing.JPanel{
         int arrayIndexY=(int)boardY;
         
         try{
-            if (msCells==null){
+            if (msCells==null && MemoryCells.getMoves()>0){
                 memCells[arrayIndexX][arrayIndexY].revealCell();
                 MemoryCells.selected.add(memCells[arrayIndexX][arrayIndexY]);
                 if(MemoryCells.selected.size()==2){
                     if(MemoryCells.selected.get(0).getValue()!=MemoryCells.selected.get(1).getValue()){
+                        repaint();
+                        for(int i=0; i<observerList.size(); i++){
+                            observerList.get(i).update(MemoryCells.getMoves()-1);
+                        }
+                        if(MemoryCells.getMoves()==1){
+                            JOptionPane.showMessageDialog(null, "You Ran Out Of Guesses", "You Lose",JOptionPane.ERROR_MESSAGE);
+                            for(int i=0; i< observerList.size(); i++){
+                                observerList.get(i).update(false);
+                            }
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Those Two Were Not A Match", "Try Again",JOptionPane.ERROR_MESSAGE);
+                        }
+                        
                         MemoryCells.selected.get(0).hideCell();
                         MemoryCells.selected.get(1).hideCell();
+                        
                     }
                     MemoryCells.selected.clear();
                     MemoryCells.moveMade();
@@ -166,6 +181,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         if(msCells[arrayIndexX][arrayIndexY].isAMine()){
                             MineSweeperCells.lose=true;
                             repaint();
+                            JOptionPane.showMessageDialog(null, "You Clicked On A Mine", "You Lose",JOptionPane.ERROR_MESSAGE);
                             for(int i=0; i< observerList.size(); i++){
                                 observerList.get(i).update(MineSweeperCells.lose);
                             }

@@ -37,7 +37,6 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
     }
     @Override
     public void update(boolean lose){
-        JOptionPane.showMessageDialog(null, "You Clicked On A Mine", "You Lose",JOptionPane.ERROR_MESSAGE);
         this.setVisible(false);
     }
     
