@@ -25,21 +25,23 @@ public class Player {
 
     public static final String[] gameList={"Mine Sweeper", "Memory"};
     
-    private Player(String name){
-        this.name=name;
+    private Player(){
         gamesPlayed=new int[gameList.length];
         gamesWon=new int[gameList.length];
     }
     
-    public static Player getPlayer(String name){
+    public static Player getPlayer(){
         if(p==null){
-            p= new Player(name);
+            p= new Player();
         }
         return p;
     }
     
     public String getName(){
         return this.name;
+    }
+    public void setName(String name){
+        this.name=name;
     }
     
     public void setGamesPlayed(int gamesPlayed, int index){

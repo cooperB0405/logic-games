@@ -27,7 +27,8 @@ public class GameSelectWin extends javax.swing.JFrame {
         initComponents();
         
         this.lblUser.setText(userName);
-        p = Player.getPlayer(userName);
+        p = Player.getPlayer();
+        p.setName(userName);
         Player.getStats(p);
 
     }

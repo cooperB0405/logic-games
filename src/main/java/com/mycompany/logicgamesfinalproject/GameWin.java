@@ -45,6 +45,16 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         actions=actionsLeft;
         lblMoves.setText(String.valueOf(actions));
     }
+    
+    @Override
+    public void update(boolean win, Player p, int gameNum){
+        if(win){
+            p.setGamesWon(p.getGamesWon(gameNum)+1, gameNum);
+            p.saveStats();
+            JOptionPane.showMessageDialog(null, "You Win!!!", "Great Job!",JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

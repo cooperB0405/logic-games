@@ -11,13 +11,16 @@ package com.mycompany.logicgamesfinalproject;
 public class DifficultyLevel extends javax.swing.JFrame {
     private int gameNum;
     private enum diff{EASY ,MEDIUM, HARD};
-    diff difficulty;
+    private diff difficulty;
+    private Player p;
+    
     /**
      * Creates new form DifficultyLevel
      */
     public DifficultyLevel(int gameNum) {
         initComponents();
         this.gameNum=gameNum;
+        p=Player.getPlayer();
     }
     
     private void createGame(int game, diff difficulty){
@@ -29,8 +32,8 @@ public class DifficultyLevel extends javax.swing.JFrame {
         
         //alter game board
         if(game==1){
-            Player.getPlayer("").setGamesPlayed(Player.getPlayer("").getGamesPlayed(game-1)+1, game-1);
-            Player.getPlayer("").saveStats();
+            p.setGamesPlayed(p.getGamesPlayed(game-1)+1, game-1);
+            p.saveStats();
             int numMines=0;
             if(difficulty==diff.EASY){
                 gridSize=7;
@@ -50,8 +53,8 @@ public class DifficultyLevel extends javax.swing.JFrame {
             
         }
         else if(game==2){
-            Player.getPlayer("").setGamesPlayed(Player.getPlayer("").getGamesPlayed(game-1)+1, game-1);
-            Player.getPlayer("").saveStats();
+            p.setGamesPlayed(p.getGamesPlayed(game-1)+1, game-1);
+            p.saveStats();
             if(difficulty==diff.EASY){
                 gridSize=4;
             }

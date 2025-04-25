@@ -166,11 +166,17 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         MemoryCells.selected.get(1).hideCell();
                         
                     }
+                    else{
+                    if(MemoryCells.checkWin(memCells)){
+                        for(int i=0; i< observerList.size(); i++){
+                            observerList.get(i).update(true, Player.getPlayer(), 1);
+                        }
+                        
+                    }
+                    }
                     MemoryCells.selected.clear();
                     MemoryCells.moveMade();
-                    if(MemoryCells.checkWin(memCells)){
-                        //you win
-                    }
+
                 }
             
             }
