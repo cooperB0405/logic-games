@@ -7,7 +7,10 @@ package com.mycompany.logicgamesfinalproject;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,12 +23,20 @@ public class GameBoardPanel extends javax.swing.JPanel{
     private MemoryCells[][] memCells;
     private boolean flagOn;
     private ArrayList<Updatable> observerList= new ArrayList<>();
+    private Image flag;
     /**
      * Creates new form GameBoard
      */
     public GameBoardPanel() {
         initComponents();
         flagOn=false;
+        try{
+            flag = ImageIO.read(new File("src/main/images/mineFlag.gif"));
+        }
+        catch(Exception e){
+            System.out.println("didnt load image");
+        }
+        
         
     }
     
@@ -60,7 +71,8 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         g2.fillRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                         if(msCells[i][j].hasBeenFlagged()){
                             g2.setColor(Color.orange);
-                            g2.drawString("flag", msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
+                            g2.drawImage(flag, msCells[i][j].cellx, msCells[i][j].celly, this);
+                            //g2.drawString("flag", msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
                         }
                         
                         
