@@ -17,6 +17,7 @@
                 <directory>source/main/images</directory>
                 <includes>
                     <include>*.gif</include>
+                    <include>*.png</include>
                 </includes>
             </resource>
         </resources>

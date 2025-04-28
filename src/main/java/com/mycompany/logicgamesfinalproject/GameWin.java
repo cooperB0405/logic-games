@@ -55,6 +55,8 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
             this.setVisible(false);
         }
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.

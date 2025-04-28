@@ -24,6 +24,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
     private boolean flagOn;
     private ArrayList<Updatable> observerList= new ArrayList<>();
     private Image flag;
+    private Image mine;
     /**
      * Creates new form GameBoard
      */
@@ -32,6 +33,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
         flagOn=false;
         try{
             flag = ImageIO.read(new File("src/main/images/mineFlag.gif"));
+            mine= ImageIO.read(new File("src/main/images/bomb.png"));
         }
         catch(Exception e){
             System.out.println("didnt load image");
@@ -59,7 +61,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
             for (int i=0; i<msCells.length; i++) {
                 for(int j=0; j<msCells[i].length; j++){
                     if(msCells[i][j].isAMine()){
-                        g2.drawString("M", msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
+                        g2.drawImage(mine, msCells[i][j].cellx+7, msCells[i][j].celly+10, this);
                     }
                     else{g2.drawString(Integer.toString(msCells[i][j].getAdjMines()), 
                             msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
@@ -72,7 +74,6 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         if(msCells[i][j].hasBeenFlagged()){
                             g2.setColor(Color.orange);
                             g2.drawImage(flag, msCells[i][j].cellx, msCells[i][j].celly, this);
-                            //g2.drawString("flag", msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
                         }
                         
                         
@@ -89,7 +90,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
             //drawing memory
             for (int i=0; i<memCells.length; i++) {
                 for(int j=0; j<memCells[i].length; j++){
-                    g2.drawString(Integer.toString(memCells[i][j].getValue()), memCells[i][j].cellx+(BoardCell.cellw/2)+5, memCells[i][j].celly+(BoardCell.cellh/2)+5);
+                    g2.drawImage(memCells[i][j].getImage(), memCells[i][j].cellx+8, memCells[i][j].celly+10, this);
                     if (memCells[i][j].hasBeenRevealed()==false){
                         g2.setColor(Color.black);
                         g2.fillRect(memCells[i][j].cellx, memCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);

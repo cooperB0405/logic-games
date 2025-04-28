@@ -4,7 +4,10 @@
  */
 package com.mycompany.logicgamesfinalproject;
 
+import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -14,6 +17,8 @@ public class MemoryCells extends BoardCell{
     
     public static ArrayList<MemoryCells> selected =new ArrayList<>();
     private static int moves;
+    
+    private Image img;
     
     public MemoryCells(int x, int y){
         super(x, y);
@@ -32,19 +37,33 @@ public class MemoryCells extends BoardCell{
 
 
     public static void memoryCellValues(MemoryCells[][] cells, int gridSize){
-        int[] numsToAssign = new int[gridSize*gridSize];
+        Image[] imgToAssign = new Image[gridSize*gridSize];
+        int[] numToAssign= new int[gridSize*gridSize];
+        Image[] imgList = new Image[(gridSize*gridSize)/2];
+        for(int i=0; i<imgList.length; i++){
+            try{
+                imgList[i]=  ImageIO.read(new File("src/main/images/MemoryImages/memory"+ (i+1) +".png"));
+            }
+            catch(Exception e){
+                System.out.println("image "+(i+1)+" didnt load");
+            }
+            
+        }
         int value=1;
         
-        for(int i=0; i<numsToAssign.length;i+=2){
-            numsToAssign[i]=value;
-            numsToAssign[i+1]=value;
+        for(int i=0; i<imgToAssign.length;i+=2){
+            imgToAssign[i]=imgList[i/2];
+            imgToAssign[i+1]=imgList[i/2];
+            numToAssign[i]=value;
+            numToAssign[i+1]=value;
             value++;
         }
-        for(int i=0; i<numsToAssign.length;i++){
+        for(int i=0; i<imgToAssign.length;i++){
             int row= (int) (Math.random()*cells.length);
             int col= (int) (Math.random()*cells.length);
             if(cells[row][col].getValue()==0){
-                cells[row][col].setValue(numsToAssign[i]);
+                cells[row][col].setImage(imgToAssign[i]);
+                cells[row][col].setValue(numToAssign[i]);
 
             }
             else{
@@ -77,5 +96,12 @@ public class MemoryCells extends BoardCell{
     
     public static void moveMade(){
         moves--;
+    }
+    
+    public void setImage(Image img){
+        this.img=img;
+    }
+    public Image getImage(){
+        return this.img;
     }
 }
