@@ -162,9 +162,11 @@ public class GameBoardPanel extends javax.swing.JPanel{
                 if(MemoryCells.selected.size()==2){
                     if(MemoryCells.selected.get(0).getValue()!=MemoryCells.selected.get(1).getValue()){
                         repaint();
+                        MemoryCells.moveMade();
                         for(int i=0; i<observerList.size(); i++){
-                            observerList.get(i).update(MemoryCells.getMoves()-1);
+                            observerList.get(i).update(MemoryCells.getMoves());
                         }
+                        
                         if(MemoryCells.getMoves()==1){
                             JOptionPane.showMessageDialog(null, "You Ran Out Of Guesses", "You Lose",JOptionPane.ERROR_MESSAGE);
                             for(int i=0; i< observerList.size(); i++){
@@ -188,7 +190,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
                     }
                     }
                     MemoryCells.selected.clear();
-                    MemoryCells.moveMade();
+                    
 
                 }
             
