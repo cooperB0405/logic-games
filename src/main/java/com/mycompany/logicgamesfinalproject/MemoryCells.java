@@ -5,9 +5,16 @@
 package com.mycompany.logicgamesfinalproject;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+
 
 /**
  *
@@ -36,17 +43,43 @@ public class MemoryCells extends BoardCell{
     }
 
 
-    public static void memoryCellValues(MemoryCells[][] cells, int gridSize){
+    public static void memoryCellValues(MemoryCells[][] cells, int gridSize, boolean pokemon) throws IOException{
         Image[] imgToAssign = new Image[gridSize*gridSize];
         int[] numToAssign= new int[gridSize*gridSize];
         Image[] imgList = new Image[(gridSize*gridSize)/2];
+        int[] pokeDexUsed= new int[(gridSize*gridSize)/2];
         for(int i=0; i<imgList.length; i++){
-            try{
-                imgList[i]=  ImageIO.read(new File("src/main/images/MemoryImages/memory"+ (i+1) +".png"));
+            if (pokemon){
+                boolean inList=false;
+                int dexNum= (int) (Math.random()*1025);
+                for(int val: pokeDexUsed){
+                    if(val==dexNum){
+                        inList=true;
+                    }
+                }
+                if(!inList){
+                    try {
+                        URL picLink= new URL("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+Integer.toString(dexNum)+".png");
+                        System.out.println(picLink);
+                        BufferedImage img= ImageIO.read(picLink);
+                        System.out.println("made img");
+                        System.out.println(Integer.toString(dexNum));
+                        imgList[i]= (Image)img;
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(MemoryCells.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
             }
-            catch(Exception e){
-                System.out.println("image "+(i+1)+" didnt load");
+            else{
+                try{
+                    imgList[i]=  ImageIO.read(new File("src/main/images/MemoryImages/memory"+ (i+1) +".png"));
+                }
+                catch(Exception e){
+                    System.out.println("image "+(i+1)+" didnt load");
+                }
             }
+
             
         }
         int value=1;

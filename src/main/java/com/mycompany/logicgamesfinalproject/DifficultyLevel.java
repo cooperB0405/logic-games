@@ -4,6 +4,10 @@
  */
 package com.mycompany.logicgamesfinalproject;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author coope
@@ -23,7 +27,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
         p=Player.getPlayer();
     }
     
-    private void createGame(int game, diff difficulty){
+    private void createGame(int game, diff difficulty) throws IOException{
         int gridSize=0;
         MineSweeperCells[][] msCells=null;
         MemoryCells[][] memCells=null;
@@ -65,7 +69,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
                 gridSize=8;
             }
             memCells= MemoryCells.makeGrid(gridSize);
-            MemoryCells.memoryCellValues(memCells, gridSize);
+            MemoryCells.memoryCellValues(memCells, gridSize, true);
             MemoryCells.setMoves(((gridSize*gridSize)/2)+(gridSize/2));
         }
         //use the math for the cells to figure out where the mouse is clickedd
@@ -154,24 +158,36 @@ public class DifficultyLevel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEasyActionPerformed
-        // TODO add your handling code here:
-        difficulty=diff.EASY;
-        createGame(gameNum, difficulty);
-        this.setVisible(false);
+        try {
+            // TODO add your handling code here:
+            difficulty=diff.EASY;
+            createGame(gameNum, difficulty);
+            this.setVisible(false);
+        } catch (IOException ex) {
+            Logger.getLogger(DifficultyLevel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEasyActionPerformed
 
     private void btnMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMediumActionPerformed
-        // TODO add your handling code here:
-        difficulty=diff.MEDIUM;
-        createGame(gameNum, difficulty);
-        this.setVisible(false);
+        try {
+            // TODO add your handling code here:
+            difficulty=diff.MEDIUM;
+            createGame(gameNum, difficulty);
+            this.setVisible(false);
+        } catch (IOException ex) {
+            Logger.getLogger(DifficultyLevel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnMediumActionPerformed
 
     private void btnHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHardActionPerformed
-        // TODO add your handling code here:
-        difficulty=diff.HARD;
-        createGame(gameNum, difficulty);
-        this.setVisible(false);
+        try {
+            // TODO add your handling code here:
+            difficulty=diff.HARD;
+            createGame(gameNum, difficulty);
+            this.setVisible(false);
+        } catch (IOException ex) {
+            Logger.getLogger(DifficultyLevel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnHardActionPerformed
 
     /**
