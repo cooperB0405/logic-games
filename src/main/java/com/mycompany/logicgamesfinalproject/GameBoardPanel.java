@@ -125,6 +125,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.MatteBorder(null));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);

@@ -22,7 +22,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
     public GameWin(MemoryCells[][] memoryCells, MineSweeperCells[][] mineSweeperCells) {
         initComponents();
         btnHome.setIcon(new javax.swing.ImageIcon("src/main/images/home.png"));
-        btnMineFlag.setIcon(new javax.swing.ImageIcon("src/main/images/bigFlag.gif"));
+        btnMineFlag.setIcon(new javax.swing.ImageIcon("src/main/images/bigFlag.png"));
         this.memoryCells=memoryCells;
         this.mineSweeperCells=mineSweeperCells;
         //try makin two boards and disable the unused one
