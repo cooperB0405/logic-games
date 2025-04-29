@@ -4,6 +4,7 @@
  */
 package com.mycompany.logicgamesfinalproject;
 
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +21,8 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
      */
     public GameWin(MemoryCells[][] memoryCells, MineSweeperCells[][] mineSweeperCells) {
         initComponents();
-        btnHome.setIcon(new javax.swing.ImageIcon("src\\main\\images\\home.png"));
+        btnHome.setIcon(new javax.swing.ImageIcon("src/main/images/home.png"));
+        btnMineFlag.setIcon(new javax.swing.ImageIcon("src/main/images/bigFlag.gif"));
         this.memoryCells=memoryCells;
         this.mineSweeperCells=mineSweeperCells;
         //try makin two boards and disable the unused one
@@ -29,9 +31,11 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
             MineSweeperCells.setNumFlags(MineSweeperCells.numMinesInGrid);
             actions=MineSweeperCells.getNumFlagsRemaining();
             lblMovesRemaining.setText("Flags Left");
+            gameBoard.setPreferredSize(new Dimension((mineSweeperCells.length*BoardCell.cellw), (mineSweeperCells.length*BoardCell.cellh)));
         }
         else{
             actions=MemoryCells.getMoves();
+            gameBoard.setPreferredSize(new Dimension((memoryCells.length*BoardCell.cellw), (memoryCells.length*BoardCell.cellh)));
         }
         lblMoves.setText(String.valueOf(actions));
         gameBoard.addUpdatable(this);
@@ -74,15 +78,16 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         lblMovesRemaining = new javax.swing.JLabel();
         lblMoves = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Game Window");
 
-        btnMineFlag.setText("/flag button img/");
         btnMineFlag.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMineFlagActionPerformed(evt);
             }
         });
 
+        btnHome.setBackground(new java.awt.Color(102, 102, 102));
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHomeActionPerformed(evt);
@@ -97,10 +102,13 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         );
         gameBoardLayout.setVerticalGroup(
             gameBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 332, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
 
+        lblMovesRemaining.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
         lblMovesRemaining.setText("Moves Remaining");
+
+        lblMoves.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,7 +117,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 414, Short.MAX_VALUE)
+                        .addGap(0, 465, Short.MAX_VALUE)
                         .addComponent(btnMineFlag))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -118,7 +126,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblMovesRemaining)
+                                .addComponent(lblMovesRemaining, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblMoves)
                                 .addGap(21, 21, 21)))))
@@ -127,11 +135,12 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnHome)
-                    .addComponent(lblMovesRemaining)
-                    .addComponent(lblMoves))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnHome)
+                        .addComponent(lblMoves))
+                    .addComponent(lblMovesRemaining))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gameBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMineFlag)

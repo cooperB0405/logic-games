@@ -106,10 +106,14 @@ public class DifficultyLevel extends javax.swing.JFrame {
         btnMedium = new javax.swing.JButton();
         btnHard = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Difficulty Select");
 
+        lblDifficulty.setFont(new java.awt.Font("Segoe UI Semilight", 1, 18)); // NOI18N
         lblDifficulty.setText("Select Difficulty");
 
+        btnEasy.setBackground(new java.awt.Color(153, 255, 153));
+        btnEasy.setFont(new java.awt.Font("Segoe UI Historic", 2, 14)); // NOI18N
         btnEasy.setText("Easy");
         btnEasy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +121,8 @@ public class DifficultyLevel extends javax.swing.JFrame {
             }
         });
 
+        btnMedium.setBackground(new java.awt.Color(255, 255, 51));
+        btnMedium.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
         btnMedium.setText("Medium");
         btnMedium.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +130,8 @@ public class DifficultyLevel extends javax.swing.JFrame {
             }
         });
 
+        btnHard.setBackground(new java.awt.Color(255, 51, 51));
+        btnHard.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         btnHard.setText("Hard");
         btnHard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,16 +144,17 @@ public class DifficultyLevel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDifficulty)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addContainerGap()
+                        .addComponent(lblDifficulty))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnMedium)
                             .addComponent(btnEasy)
                             .addComponent(btnHard))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,11 +163,11 @@ public class DifficultyLevel extends javax.swing.JFrame {
                 .addComponent(lblDifficulty)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEasy)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMedium)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnHard)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

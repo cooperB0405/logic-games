@@ -35,8 +35,13 @@ public class UserStatsWin extends javax.swing.JFrame {
         tbaStats = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Stats");
+        setBackground(new java.awt.Color(0, 51, 102));
+        setForeground(new java.awt.Color(153, 153, 255));
 
+        tbaStats.setBackground(new java.awt.Color(204, 255, 255));
+        tbaStats.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         tbaStats.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -62,6 +67,8 @@ public class UserStatsWin extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbaStats);
 
+        btnBack.setBackground(new java.awt.Color(204, 204, 255));
+        btnBack.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +95,7 @@ public class UserStatsWin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(btnBack))
         );
 
