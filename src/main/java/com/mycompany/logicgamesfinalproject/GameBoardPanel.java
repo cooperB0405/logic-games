@@ -169,6 +169,10 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         }
                         
                         if(MemoryCells.getMoves()==1){
+                            for(int i=0; i< observerList.size(); i++){
+                                MemoryCells.moveMade();
+                                observerList.get(i).update(MemoryCells.getMoves());
+                            }
                             JOptionPane.showMessageDialog(null, "You Ran Out Of Guesses", "You Lose",JOptionPane.ERROR_MESSAGE);
                             for(int i=0; i< observerList.size(); i++){
                                 observerList.get(i).update(false);
@@ -243,7 +247,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
             }
         }
         catch(Exception e){
-            System.out.println("throw exception later");
+            JOptionPane.showMessageDialog(null, "Please Do Not Click Outside The Board", "Try Again",JOptionPane.ERROR_MESSAGE);
         }
 
 

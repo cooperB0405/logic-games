@@ -131,7 +131,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
         });
 
         btnHard.setBackground(new java.awt.Color(255, 51, 51));
-        btnHard.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        btnHard.setFont(new java.awt.Font("Segoe UI Black", 3, 14)); // NOI18N
         btnHard.setText("Hard");
         btnHard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

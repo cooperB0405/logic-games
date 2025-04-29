@@ -68,11 +68,12 @@ public class MemoryCells extends BoardCell{
                 if(!inList){
                     try {
                         URL picLink= new URL("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+Integer.toString(dexNum)+".png");
-                        System.out.println(picLink);
+                        
                         BufferedImage img= ImageIO.read(picLink);
-                        System.out.println("made img");
-                        System.out.println(Integer.toString(dexNum));
+                        
+                        
                         imgList[i]= (Image)img;
+                        imgList[i]= imgList[i].getScaledInstance(cellw-10, cellh-10, Image.SCALE_SMOOTH);
                     } catch (MalformedURLException ex) {
                         Logger.getLogger(MemoryCells.class.getName()).log(Level.SEVERE, null, ex);
                     }

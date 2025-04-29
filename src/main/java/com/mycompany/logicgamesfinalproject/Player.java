@@ -108,7 +108,7 @@ public class Player {
             if(l==null){
                 playedArr= new int[]{0, 0, 0};
                 wonArr= new int[]{0, 0, 0};
-                System.out.println("new player");
+                
             }
             else{
                
@@ -119,7 +119,7 @@ public class Player {
 
                 playedArr= new int[gameList.length];
                 wonArr= new int[gameList.length];
-                System.out.println(gameStats.length);
+                
                 for(int i=0; i<gameList.length; i++){
 
                     playedArr[i]=Integer.parseInt(gameStats[(i*2)]);
@@ -129,8 +129,7 @@ public class Player {
             }
             inputStream.close();
             for(int i=0; i<playedArr.length;i++){
-                System.out.println(playedArr[i]);
-                System.out.println(wonArr[i]);
+
                 player.setGamesPlayed(playedArr[i], i);
                 player.setGamesWon(wonArr[i], i);
             }

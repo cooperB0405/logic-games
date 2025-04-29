@@ -61,6 +61,10 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         }
     }
     
+    public void appendGameInfo(String text){
+        jtaGameInfo.setText(text);
+    }
+    
 
 
     /**
@@ -77,6 +81,8 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         gameBoard = new com.mycompany.logicgamesfinalproject.GameBoardPanel();
         lblMovesRemaining = new javax.swing.JLabel();
         lblMoves = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtaGameInfo = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Game Window");
@@ -98,11 +104,11 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         gameBoard.setLayout(gameBoardLayout);
         gameBoardLayout.setHorizontalGroup(
             gameBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 533, Short.MAX_VALUE)
         );
         gameBoardLayout.setVerticalGroup(
             gameBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGap(0, 304, Short.MAX_VALUE)
         );
 
         lblMovesRemaining.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
@@ -110,26 +116,29 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
 
         lblMoves.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
 
+        jtaGameInfo.setColumns(20);
+        jtaGameInfo.setRows(5);
+        jScrollPane1.setViewportView(jtaGameInfo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 465, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMineFlag))
+                    .addComponent(gameBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gameBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblMovesRemaining, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblMoves)
-                                .addGap(21, 21, 21)))))
+                        .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblMovesRemaining, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblMoves)
+                        .addGap(21, 21, 21)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -142,8 +151,10 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
                     .addComponent(lblMovesRemaining))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gameBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMineFlag)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMineFlag, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -201,6 +212,8 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnMineFlag;
     private com.mycompany.logicgamesfinalproject.GameBoardPanel gameBoard;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jtaGameInfo;
     private javax.swing.JLabel lblMoves;
     private javax.swing.JLabel lblMovesRemaining;
     // End of variables declaration//GEN-END:variables
