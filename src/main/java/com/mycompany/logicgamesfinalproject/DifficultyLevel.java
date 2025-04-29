@@ -56,9 +56,10 @@ public class DifficultyLevel extends javax.swing.JFrame {
             MineSweeperCells.findAdjMines(msCells);
             
         }
-        else if(game==2){
-            p.setGamesPlayed(p.getGamesPlayed(game-1)+1, game-1);
+        else if(game==2 || game==3){
+            p.setGamesPlayed(((p.getGamesPlayed(game-1))+1), game-1);
             p.saveStats();
+            boolean pokemon=false;
             if(difficulty==diff.EASY){
                 gridSize=4;
             }
@@ -68,9 +69,15 @@ public class DifficultyLevel extends javax.swing.JFrame {
             else if(difficulty==diff.HARD){
                 gridSize=8;
             }
+            if(game==3){
+                pokemon=true;
+            }
             memCells= MemoryCells.makeGrid(gridSize);
-            MemoryCells.memoryCellValues(memCells, gridSize, true);
+            MemoryCells.memoryCellValues(memCells, gridSize, pokemon);
             MemoryCells.setMoves(((gridSize*gridSize)/2)+(gridSize/2));
+            if(game==3){
+                MemoryCells.setPoke(true);
+            }
         }
         //use the math for the cells to figure out where the mouse is clickedd
         
@@ -78,7 +85,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
         GameWin g= new GameWin(memCells, msCells);
         g.setVisible(true);
         
-        if(game==2){
+        if(game==2 || game==3){
             g.hideFlagBtn();
         }
         

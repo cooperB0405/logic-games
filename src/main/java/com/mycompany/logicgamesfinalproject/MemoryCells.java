@@ -24,6 +24,7 @@ public class MemoryCells extends BoardCell{
     
     public static ArrayList<MemoryCells> selected =new ArrayList<>();
     private static int moves;
+    private static boolean pokemon;
     
     private Image img;
     
@@ -40,6 +41,13 @@ public class MemoryCells extends BoardCell{
             }
         }
         return cells;
+    }
+    
+    public static void setPoke(boolean pokeOn){
+        pokemon=pokeOn;
+    }
+    public static boolean getPokemon(){
+        return pokemon;
     }
 
 

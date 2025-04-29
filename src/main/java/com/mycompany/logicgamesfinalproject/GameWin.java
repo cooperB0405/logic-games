@@ -20,6 +20,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
      */
     public GameWin(MemoryCells[][] memoryCells, MineSweeperCells[][] mineSweeperCells) {
         initComponents();
+        btnHome.setIcon(new javax.swing.ImageIcon("src\\main\\images\\home.png"));
         this.memoryCells=memoryCells;
         this.mineSweeperCells=mineSweeperCells;
         //try makin two boards and disable the unused one
@@ -82,7 +83,6 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
             }
         });
 
-        btnHome.setText("/home img/");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHomeActionPerformed(evt);
@@ -97,7 +97,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         );
         gameBoardLayout.setVerticalGroup(
             gameBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGap(0, 332, Short.MAX_VALUE)
         );
 
         lblMovesRemaining.setText("Moves Remaining");

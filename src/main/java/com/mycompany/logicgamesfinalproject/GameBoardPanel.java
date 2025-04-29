@@ -183,8 +183,15 @@ public class GameBoardPanel extends javax.swing.JPanel{
                     }
                     else{
                     if(MemoryCells.checkWin(memCells)){
+                        repaint();
                         for(int i=0; i< observerList.size(); i++){
-                            observerList.get(i).update(true, Player.getPlayer(), 1);
+                            if(MemoryCells.getPokemon()){
+                                observerList.get(i).update(true, Player.getPlayer(), 2);
+                            }
+                            else{
+                                observerList.get(i).update(true, Player.getPlayer(), 1);
+                            }
+                            
                         }
                         
                     }

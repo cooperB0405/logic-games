@@ -25,6 +25,7 @@ public class GameSelectWin extends javax.swing.JFrame {
      */
     public GameSelectWin(String userName) {
         initComponents();
+        btnStats.setIcon(new javax.swing.ImageIcon("src\\main\\images\\stats.png"));
         
         this.lblUser.setText(userName);
         p = Player.getPlayer();
@@ -49,6 +50,7 @@ public class GameSelectWin extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         btnStats = new javax.swing.JButton();
         lblStats = new javax.swing.JLabel();
+        btnPokeMemory = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +80,13 @@ public class GameSelectWin extends javax.swing.JFrame {
 
         lblStats.setText("User Stats");
 
+        btnPokeMemory.setText("PokeMemory");
+        btnPokeMemory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPokeMemoryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,14 +103,18 @@ public class GameSelectWin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnStats, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(lblGameSelect)
-                        .addGap(0, 119, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnMineSweeper)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMemory)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(112, 112, 112)
+                                .addComponent(lblGameSelect))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnMineSweeper)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMemory)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnPokeMemory)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -121,7 +134,8 @@ public class GameSelectWin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMineSweeper)
-                    .addComponent(btnMemory))
+                    .addComponent(btnMemory)
+                    .addComponent(btnPokeMemory))
                 .addContainerGap())
         );
 
@@ -149,11 +163,17 @@ public class GameSelectWin extends javax.swing.JFrame {
         DefaultTableModel dtmStats;
         stats=new UserStatsWin();
         Player.getStats(p);
-        for(int i=0; i<2; i++){
+        for(int i=0; i<Player.gameList.length; i++){
             stats.dtmStats.addRow(p.toString(i).split("\\|"));
         }
         stats.setVisible(true);
     }//GEN-LAST:event_btnStatsActionPerformed
+
+    private void btnPokeMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokeMemoryActionPerformed
+        // TODO add your handling code here:
+        DifficultyLevel diffLev= new DifficultyLevel(3);
+        diffLev.setVisible(true);
+    }//GEN-LAST:event_btnPokeMemoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +221,7 @@ public class GameSelectWin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMemory;
     private javax.swing.JButton btnMineSweeper;
+    private javax.swing.JButton btnPokeMemory;
     private javax.swing.JButton btnStats;
     private javax.swing.JLabel lblCurrentUser;
     private javax.swing.JLabel lblGameSelect;
