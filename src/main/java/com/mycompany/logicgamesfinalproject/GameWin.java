@@ -15,6 +15,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
     private MemoryCells[][] memoryCells;
     private MineSweeperCells[][] mineSweeperCells;
     private int actions;
+    private long startTime;
     
     /**
      * Creates new form MineSweeperWin
@@ -23,6 +24,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         initComponents();
         btnHome.setIcon(new javax.swing.ImageIcon("src/main/images/home.png"));
         btnMineFlag.setIcon(new javax.swing.ImageIcon("src/main/images/bigFlag.png"));
+        startTime=System.currentTimeMillis();
         this.memoryCells=memoryCells;
         this.mineSweeperCells=mineSweeperCells;
         //try makin two boards and disable the unused one
@@ -61,8 +63,12 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         }
     }
     
+    @Override
     public void appendGameInfo(String text){
-        jtaGameInfo.setText(text);
+        long currTime=System.currentTimeMillis();
+        long timeFromStart=currTime-startTime;
+        int timeInSecs=(int) timeFromStart/1000;
+        jtaGameInfo.setText(timeInSecs+": "+text);
     }
     
 

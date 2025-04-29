@@ -160,6 +160,14 @@ public class GameBoardPanel extends javax.swing.JPanel{
             if (msCells==null && MemoryCells.getMoves()>0){
                 memCells[arrayIndexX][arrayIndexY].revealCell();
                 MemoryCells.selected.add(memCells[arrayIndexX][arrayIndexY]);
+                if(MemoryCells.selected.size()==3){
+                    if(MemoryCells.selected.get(0)!=MemoryCells.selected.get(1)){
+                        MemoryCells.selected.get(0).hideCell();
+                        MemoryCells.selected.get(1).hideCell();
+                    }
+                    MemoryCells.selected.remove(1);
+                    MemoryCells.selected.remove(0);
+                }
                 if(MemoryCells.selected.size()==2){
                     if(MemoryCells.selected.get(0).getValue()!=MemoryCells.selected.get(1).getValue()){
                         repaint();
@@ -179,29 +187,30 @@ public class GameBoardPanel extends javax.swing.JPanel{
                             }
                         }
                         else{
-                            JOptionPane.showMessageDialog(null, "Those Two Were Not A Match", "Try Again",JOptionPane.ERROR_MESSAGE);
-                        }
-                        
-                        MemoryCells.selected.get(0).hideCell();
-                        MemoryCells.selected.get(1).hideCell();
-                        
-                    }
-                    else{
-                    if(MemoryCells.checkWin(memCells)){
-                        repaint();
-                        for(int i=0; i< observerList.size(); i++){
-                            if(MemoryCells.getPokemon()){
-                                observerList.get(i).update(true, Player.getPlayer(), 2);
-                            }
-                            else{
-                                observerList.get(i).update(true, Player.getPlayer(), 1);
-                            }
+                            for(int i=0; i<observerList.size(); i++){
+                                    observerList.get(i).appendGameInfo("Those Two Were Not A Match");
+                                }
                             
                         }
-                        
                     }
+                    else{
+                        MemoryCells.selected.remove(1);
+                        MemoryCells.selected.remove(0);
+                        if(MemoryCells.checkWin(memCells)){
+                            repaint();
+                            for(int i=0; i< observerList.size(); i++){
+                                if(MemoryCells.getPokemon()){
+                                    observerList.get(i).update(true, Player.getPlayer(), 2);
+                                }
+                                else{
+                                    observerList.get(i).update(true, Player.getPlayer(), 1);
+                                }
+
+                            }
+
+                        }
                     }
-                    MemoryCells.selected.clear();
+//                    MemoryCells.selected.clear();
                     
 
                 }
@@ -238,7 +247,11 @@ public class GameBoardPanel extends javax.swing.JPanel{
                                 //post you won
                             }
                             else{
-                                JOptionPane.showMessageDialog(null, "All Mines Are Not Flagged, Unflag And Try Again", "Try Again",JOptionPane.ERROR_MESSAGE);
+                                for(int i=0; i<observerList.size(); i++){
+                                    observerList.get(i).appendGameInfo("All Mines Are Not Flagged, Unflag And Try Again");
+                                }
+                                
+                                
                             }
                         }
                     }

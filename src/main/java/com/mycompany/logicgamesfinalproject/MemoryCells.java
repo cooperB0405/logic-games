@@ -37,7 +37,7 @@ public class MemoryCells extends BoardCell{
         MemoryCells[][] cells= new MemoryCells[gridSize][gridSize];
         for(int i=0;i<gridSize; i++){
             for(int j=0; j<gridSize; j++){
-                cells[i][j]=new MemoryCells(50*i, 50*j);
+                cells[i][j]=new MemoryCells(BoardCell.cellw*i, BoardCell.cellh*j);
             }
         }
         return cells;
