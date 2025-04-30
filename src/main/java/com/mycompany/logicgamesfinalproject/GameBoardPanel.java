@@ -158,12 +158,31 @@ public class GameBoardPanel extends javax.swing.JPanel{
         
         try{
             if (msCells==null && MemoryCells.getMoves()>0){
-                memCells[arrayIndexX][arrayIndexY].revealCell();
-                MemoryCells.selected.add(memCells[arrayIndexX][arrayIndexY]);
+                if(MemoryCells.selected.size()<2){
+                    if(!memCells[arrayIndexX][arrayIndexY].hasBeenRevealed()){
+                        memCells[arrayIndexX][arrayIndexY].revealCell();
+                        MemoryCells.selected.add(memCells[arrayIndexX][arrayIndexY]);
+                    }
+                }
+                else{
+                    if(memCells[arrayIndexX][arrayIndexY]==MemoryCells.selected.get(0)
+                            ||memCells[arrayIndexX][arrayIndexY]==MemoryCells.selected.get(1)){
+                        memCells[arrayIndexX][arrayIndexY].revealCell();
+                        MemoryCells.selected.add(memCells[arrayIndexX][arrayIndexY]);
+                    }
+                    else if(!memCells[arrayIndexX][arrayIndexY].hasBeenRevealed()){
+                        memCells[arrayIndexX][arrayIndexY].revealCell();
+                        MemoryCells.selected.add(memCells[arrayIndexX][arrayIndexY]);
+                    }
+                }
                 if(MemoryCells.selected.size()==3){
                     if(MemoryCells.selected.get(0)!=MemoryCells.selected.get(1)){
                         MemoryCells.selected.get(0).hideCell();
                         MemoryCells.selected.get(1).hideCell();
+                    }
+                    if(MemoryCells.selected.get(2)==MemoryCells.selected.get(0)
+                            ||memCells[arrayIndexX][arrayIndexY]==MemoryCells.selected.get(1)){
+                        MemoryCells.selected.get(2).revealCell();
                     }
                     MemoryCells.selected.remove(1);
                     MemoryCells.selected.remove(0);
