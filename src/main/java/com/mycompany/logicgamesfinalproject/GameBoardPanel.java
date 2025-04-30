@@ -267,6 +267,10 @@ public class GameBoardPanel extends javax.swing.JPanel{
                             repaint();
                             if(MineSweeperCells.checkWin(msCells, MineSweeperCells.numMinesInGrid)){
                                 //post you won
+                                repaint();
+                                for(int i=0; i< observerList.size(); i++){
+                                   observerList.get(i).update(true, Player.getPlayer(), 0);
+                                }
                             }
                             else{
                                 for(int i=0; i<observerList.size(); i++){
