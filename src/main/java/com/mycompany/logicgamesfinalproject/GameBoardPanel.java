@@ -22,6 +22,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
     private MineSweeperCells[][] msCells;
     private MemoryCells[][] memCells;
     private boolean flagOn;
+    //observer list 
     private ArrayList<Updatable> observerList= new ArrayList<>();
     private Image flag;
     private Image mine;
@@ -31,11 +32,13 @@ public class GameBoardPanel extends javax.swing.JPanel{
     public GameBoardPanel() {
         initComponents();
         flagOn=false;
+        //load images
         try{
             flag = ImageIO.read(new File("src/main/images/mineFlag.gif"));
             mine= ImageIO.read(new File("src/main/images/bomb.png"));
         }
         catch(Exception e){
+            //if images cant load, catch and cancel game
             JOptionPane.showMessageDialog(null, "Error Loading Game", "Try New Game",JOptionPane.ERROR_MESSAGE);
             for(int i=0; i< observerList.size(); i++){
                 observerList.get(i).cancelGame();
@@ -45,12 +48,15 @@ public class GameBoardPanel extends javax.swing.JPanel{
         
     }
     
+    //adds observer to list
     public void addUpdatable(Updatable observer){
         observerList.add(observer);
     }
     
+    //changes flag bool
     public void flagChange(){
         flagOn=!flagOn;
+        //updates button on observer
         for(int i=0; i<observerList.size(); i++){
             observerList.get(i).flagPressed(flagOn);
         }
@@ -61,29 +67,32 @@ public class GameBoardPanel extends javax.swing.JPanel{
         super.paint(g);
         Graphics2D g2= (Graphics2D)g;
         
-        
+        //draws mine sweeper if the minesweeper grid is not null
         if(msCells!=null){
-            //drawing mineSweeper
+            //loops through grid
             for (int i=0; i<msCells.length; i++) {
                 for(int j=0; j<msCells[i].length; j++){
+                    //draw mine image 
                     if(msCells[i][j].isAMine()){
                         g2.drawImage(mine, msCells[i][j].cellx+7, msCells[i][j].celly+10, this);
                     }
-                    else{g2.drawString(Integer.toString(msCells[i][j].getAdjMines()), 
-                            msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
+                    //else draws adjacent mine values
+                    else{
+                        g2.drawString(Integer.toString(msCells[i][j].getAdjMines()), 
+                        msCells[i][j].cellx+(BoardCell.cellw/2)+5, msCells[i][j].celly+(BoardCell.cellh/2)+5);
                     }
                     
                     //covers cell info if it hasnt been revealed
                     if (msCells[i][j].hasBeenRevealed()==false){
                         g2.setColor(Color.black);
                         g2.fillRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
+                        //draws flag if cell is flagged
                         if(msCells[i][j].hasBeenFlagged()){
                             g2.setColor(Color.orange);
                             g2.drawImage(flag, msCells[i][j].cellx, msCells[i][j].celly, this);
                         }
-                        
-                        
                     }
+                    //grid highlights
                     g2.setColor(Color.gray);
                     g2.drawRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                     
@@ -92,15 +101,19 @@ public class GameBoardPanel extends javax.swing.JPanel{
             }
 
         }
+        //draws memory if grid is not null
         if(memCells!=null){
-            //drawing memory
+            //loop through grid
             for (int i=0; i<memCells.length; i++) {
                 for(int j=0; j<memCells[i].length; j++){
+                    //draws the image of the cell
                     g2.drawImage(memCells[i][j].getImage(), memCells[i][j].cellx+8, memCells[i][j].celly+10, this);
-                    if (memCells[i][j].hasBeenRevealed()==false){
+                    //covers the cell if it has not been revealed
+                    if (!memCells[i][j].hasBeenRevealed()){
                         g2.setColor(Color.black);
                         g2.fillRect(memCells[i][j].cellx, memCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                     }
+                    //grid highlights
                     g2.setColor(Color.gray);
                     g2.drawRect(memCells[i][j].cellx, memCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                 }
@@ -111,7 +124,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
 
     }
     
-
+    //method gets cells from game window
     public void getCells(MineSweeperCells[][] msCells, MemoryCells[][] memCells){
         this.msCells=msCells;
         this.memCells=memCells;
@@ -150,6 +163,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //calls method on mouse Pressed
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
         //gets mouse click and what cell was clicked
@@ -159,17 +173,24 @@ public class GameBoardPanel extends javax.swing.JPanel{
         double boardY=mouseY/BoardCell.cellh;
         boardX=Math.floor(boardX);
         boardY=Math.floor(boardY);
+        //converts mouse click to place in the grid
         int arrayIndexX=(int)boardX;
         int arrayIndexY=(int)boardY;
         
         try{
+            //logic for game
+            //memory logic
             if (msCells==null && MemoryCells.getMoves()>0){
+                //only select cells that are not revealed
                 if(MemoryCells.selected.size()<2){
                     if(!memCells[arrayIndexX][arrayIndexY].hasBeenRevealed()){
                         memCells[arrayIndexX][arrayIndexY].revealCell();
                         MemoryCells.selected.add(memCells[arrayIndexX][arrayIndexY]);
                     }
                 }
+                //third cell in selected list
+                //can pick a revealed cell only if
+                //it is the cell in position 0 or 1 of selected list
                 else{
                     if(memCells[arrayIndexX][arrayIndexY]==MemoryCells.selected.get(0)
                             ||memCells[arrayIndexX][arrayIndexY]==MemoryCells.selected.get(1)){
@@ -182,36 +203,41 @@ public class GameBoardPanel extends javax.swing.JPanel{
                     }
                 }
                 if(MemoryCells.selected.size()==3){
+                    //hides cells first two cells if they do not match
                     if(MemoryCells.selected.get(0)!=MemoryCells.selected.get(1)){
                         MemoryCells.selected.get(0).hideCell();
                         MemoryCells.selected.get(1).hideCell();
                     }
+                    //checks if third cell selected is cell 0 or 1
                     if(MemoryCells.selected.get(2)==MemoryCells.selected.get(0)
                             ||memCells[arrayIndexX][arrayIndexY]==MemoryCells.selected.get(1)){
+                        //reveals the cell 
                         MemoryCells.selected.get(2).revealCell();
                     }
+                    //removes cells 0 and 1 from the selected list
                     MemoryCells.selected.remove(1);
                     MemoryCells.selected.remove(0);
                 }
                 if(MemoryCells.selected.size()==2){
+                    //checks if first two cells in list are not matching
                     if(MemoryCells.selected.get(0).getValue()!=MemoryCells.selected.get(1).getValue()){
                         repaint();
+                        //decrements the move counter
                         MemoryCells.moveMade();
+                        //notifies observer of move num changing
                         for(int i=0; i<observerList.size(); i++){
                             observerList.get(i).update(MemoryCells.getMoves());
                         }
-                        
-                        if(MemoryCells.getMoves()==1){
-                            for(int i=0; i< observerList.size(); i++){
-                                MemoryCells.moveMade();
-                                observerList.get(i).update(MemoryCells.getMoves());
-                            }
+                        //checks if out of moves
+                        if(MemoryCells.getMoves()==0){
+                            //you lose and notifies observer
                             JOptionPane.showMessageDialog(null, "You Ran Out Of Guesses", "You Lose",JOptionPane.ERROR_MESSAGE);
                             for(int i=0; i< observerList.size(); i++){
                                 observerList.get(i).update(false);
                             }
                         }
                         else{
+                            //sends message to text area
                             for(int i=0; i<observerList.size(); i++){
                                     observerList.get(i).appendGameInfo("Those Two Were Not A Match");
                                 }
@@ -219,11 +245,15 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         }
                     }
                     else{
+                        //removes values from the list
+                        //keeps them revealed
                         MemoryCells.selected.remove(1);
                         MemoryCells.selected.remove(0);
+                        //checks if you have won
                         if(MemoryCells.checkWin(memCells)){
                             repaint();
                             for(int i=0; i< observerList.size(); i++){
+                                //checks for what memory game to give win stat to 
                                 if(MemoryCells.getPokemon()){
                                     observerList.get(i).update(true, Player.getPlayer(), 2);
                                 }
@@ -273,6 +303,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
                                 }
                             }
                             else{
+                                //edits text field
                                 for(int i=0; i<observerList.size(); i++){
                                     observerList.get(i).appendGameInfo("All Mines Are Not Flagged, Unflag And Try Again");
                                 }
@@ -286,6 +317,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
             }
         }
         catch(Exception e){
+            //pop up if you clicked off of the game board
             JOptionPane.showMessageDialog(null, "Please Do Not Click Outside The Board", "Try Again",JOptionPane.ERROR_MESSAGE);
         }
 

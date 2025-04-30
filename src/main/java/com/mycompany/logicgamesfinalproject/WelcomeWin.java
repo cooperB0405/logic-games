@@ -95,6 +95,7 @@ public class WelcomeWin extends javax.swing.JFrame {
 
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
         // TODO add your handling code here:
+        //creates game select window when hit
         GameSelectWin selectGame = new GameSelectWin(userName.getText());
         
         selectGame.setVisible(true);

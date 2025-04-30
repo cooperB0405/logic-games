@@ -10,6 +10,7 @@ package com.mycompany.logicgamesfinalproject;
  */
 public interface Updatable {
     
+    //interface methods
     public void update(boolean lose);
     
     public void update(int actionsLeft);

@@ -24,27 +24,37 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
      */
     public GameWin(MemoryCells[][] memoryCells, MineSweeperCells[][] mineSweeperCells) {
         initComponents();
+        //set icons
         btnHome.setIcon(new javax.swing.ImageIcon("src/main/images/home.png"));
         btnMineFlag.setIcon(new javax.swing.ImageIcon("src/main/images/bigFlag.png"));
+        //get player
         p=Player.getPlayer();
+        //start time
         startTime=System.currentTimeMillis();
+        //gets grids
         this.memoryCells=memoryCells;
         this.mineSweeperCells=mineSweeperCells;
-        //try makin two boards and disable the unused one
+        //gameBoard gets access to the grids
         gameBoard.getCells(mineSweeperCells, memoryCells);
         if(mineSweeperCells!=null){
+            //sets mine sweeper class variables and values 
             MineSweeperCells.setNumFlags(MineSweeperCells.numMinesInGrid);
             actions=MineSweeperCells.getNumFlagsRemaining();
             lblMovesRemaining.setText("Flags Left");
+            //this isnt working right now
+            //look into it
             gameBoard.setPreferredSize(new Dimension((mineSweeperCells.length*BoardCell.cellw), (mineSweeperCells.length*BoardCell.cellh)));
         }
         else{
+            //sets memory values
             actions=MemoryCells.getMoves();
             gameBoard.setPreferredSize(new Dimension((memoryCells.length*BoardCell.cellw), (memoryCells.length*BoardCell.cellh)));
         }
         lblMoves.setText(String.valueOf(actions));
         gameBoard.addUpdatable(this);
     }
+    
+    //start of observer methods
     @Override
     public void update(boolean lose){
         this.setVisible(false);
@@ -91,7 +101,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         p.setGamesPlayed(p.getGamesPlayed(p.getCurrentGame())-1, p.getCurrentGame());
         
     }
-    
+    //end of observer methods
 
 
     /**

@@ -21,20 +21,20 @@ import javax.imageio.ImageIO;
  * @author coope
  */
 public class MemoryCells extends BoardCell{
-    
+    //fields
     public static ArrayList<MemoryCells> selected =new ArrayList<>();
     private static int moves;
     private static boolean pokemon;
-    
     private Image img;
     
     public MemoryCells(int x, int y){
         super(x, y);
     }
     
-    
+    //make grid method
     public static MemoryCells[][] makeGrid(int gridSize){
         MemoryCells[][] cells= new MemoryCells[gridSize][gridSize];
+        //loops and adds cells to the grid
         for(int i=0;i<gridSize; i++){
             for(int j=0; j<gridSize; j++){
                 cells[i][j]=new MemoryCells(BoardCell.cellw*i, BoardCell.cellh*j);
@@ -42,7 +42,7 @@ public class MemoryCells extends BoardCell{
         }
         return cells;
     }
-    
+    //set and get bool for pokemon field
     public static void setPoke(boolean pokeOn){
         pokemon=pokeOn;
     }
@@ -51,27 +51,34 @@ public class MemoryCells extends BoardCell{
     }
 
 
+    //method to set cell values and images
     public static void memoryCellValues(MemoryCells[][] cells, int gridSize, boolean pokemon) throws IOException{
+        //makes lists of images and ints to assign to the cells
         Image[] imgToAssign = new Image[gridSize*gridSize];
         int[] numToAssign= new int[gridSize*gridSize];
+        //lists for values and images needed
         Image[] imgList = new Image[(gridSize*gridSize)/2];
         int[] pokeDexUsed= new int[(gridSize*gridSize)/2];
+        //assigns images
         for(int i=0; i<imgList.length; i++){
             if (pokemon){
+                //gets a random num for pokemon
                 boolean inList=false;
                 int dexNum= (int) (Math.random()*1025);
+                //checks if pokemon is already in list
                 for(int val: pokeDexUsed){
                     if(val==dexNum){
                         inList=true;
                     }
                 }
+                //gets pic if not already used
                 if(!inList){
                     try {
                         URL picLink= new URL("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+Integer.toString(dexNum)+".png");
                         
                         BufferedImage img= ImageIO.read(picLink);
                         
-                        
+                        //scales image
                         imgList[i]= (Image)img;
                         imgList[i]= imgList[i].getScaledInstance(cellw-10, cellh-10, Image.SCALE_SMOOTH);
                     } catch (MalformedURLException ex) {
@@ -80,6 +87,7 @@ public class MemoryCells extends BoardCell{
                 }
                 
             }
+            //if not pokememory gets images from file
             else{
                 try{
                     imgList[i]=  ImageIO.read(new File("src/main/images/MemoryImages/memory"+ (i+1) +".png"));
@@ -92,7 +100,7 @@ public class MemoryCells extends BoardCell{
             
         }
         int value=1;
-        
+        //loops to give images and values to the assigning list
         for(int i=0; i<imgToAssign.length;i+=2){
             imgToAssign[i]=imgList[i/2];
             imgToAssign[i+1]=imgList[i/2];
@@ -100,6 +108,7 @@ public class MemoryCells extends BoardCell{
             numToAssign[i+1]=value;
             value++;
         }
+        //assigns cells values and images at random
         for(int i=0; i<imgToAssign.length;i++){
             int row= (int) (Math.random()*cells.length);
             int col= (int) (Math.random()*cells.length);
@@ -114,12 +123,14 @@ public class MemoryCells extends BoardCell{
         }
     }
     
+    //method to check if won
     public static boolean checkWin(MemoryCells[][] cells){
         boolean win=true;
-        
+        //checks if all have been revealed
         for(MemoryCells[] row: cells){
             for(MemoryCells cell: row){
                 if(!cell.hasBeenRevealed()){
+                    //returns true if they have
                     win=false;
                     break;
                 }
@@ -129,6 +140,8 @@ public class MemoryCells extends BoardCell{
         return win;
     }
     
+    
+    //getters and setters for the cells
     public static void setMoves(int movesToMake){
         moves=movesToMake;
     }

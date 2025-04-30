@@ -13,7 +13,9 @@ import java.util.logging.Logger;
  * @author coope
  */
 public class DifficultyLevel extends javax.swing.JFrame {
+    //game number
     private int gameNum;
+    //enum of difficulty for game
     private enum diff{EASY ,MEDIUM, HARD};
     private diff difficulty;
     private Player p;
@@ -27,6 +29,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
         p=Player.getPlayer();
     }
     
+    //method to create game
     private void createGame(int game, diff difficulty) throws IOException{
         int gridSize=0;
         MineSweeperCells[][] msCells=null;
@@ -34,11 +37,13 @@ public class DifficultyLevel extends javax.swing.JFrame {
         p.setCurrentGame(game-1);
         
         
-        //alter game board
+        //if game value is 1, create minesweeper values
         if(game==1){
+            //update games played
             p.setGamesPlayed(p.getGamesPlayed(game-1)+1, game-1);
             p.saveStats();
             int numMines=0;
+            //sets values depending on difficulty
             if(difficulty==diff.EASY){
                 gridSize=7;
                 numMines=15;
@@ -51,15 +56,21 @@ public class DifficultyLevel extends javax.swing.JFrame {
                 gridSize=12;
                 numMines=55;
             }
+            //creates the game grid
             msCells= MineSweeperCells.makeGrid(gridSize);
+            //place mines in grid
             MineSweeperCells.placeMines(msCells, numMines);
+            //sets values of cells adjacent to mines
             MineSweeperCells.findAdjMines(msCells);
             
         }
+        //creates memory game
         else if(game==2 || game==3){
+            //updates games played
             p.setGamesPlayed(((p.getGamesPlayed(game-1))+1), game-1);
             p.saveStats();
             boolean pokemon=false;
+            //sets grid size based on difficulty
             if(difficulty==diff.EASY){
                 gridSize=4;
             }
@@ -69,22 +80,26 @@ public class DifficultyLevel extends javax.swing.JFrame {
             else if(difficulty==diff.HARD){
                 gridSize=8;
             }
+            //sets bool to true if it is a pokememory instance
             if(game==3){
                 pokemon=true;
             }
+            //create memory grid
             memCells= MemoryCells.makeGrid(gridSize);
+            //sets values and pictures of cells
             MemoryCells.memoryCellValues(memCells, gridSize, pokemon);
-            MemoryCells.setMoves(((gridSize*gridSize)/2)+(gridSize/2));
+            //sets amount of moves a player can take
+            MemoryCells.setMoves(((gridSize*gridSize)/2)+(gridSize/2)+3);
+            //tags the memory class as a pokemon instance
             if(game==3){
                 MemoryCells.setPoke(true);
             }
         }
-        //use the math for the cells to figure out where the mouse is clickedd
         
         //create game win
         GameWin g= new GameWin(memCells, msCells);
         g.setVisible(true);
-        
+        //hides mineSweeper flag button if it is a memory game
         if(game==2 || game==3){
             g.hideFlagBtn();
         }

@@ -25,6 +25,7 @@ public class GameSelectWin extends javax.swing.JFrame {
      */
     public GameSelectWin(String userName) {
         initComponents();
+        //set icon
         btnStats.setIcon(new javax.swing.ImageIcon("src\\main\\images\\stats.png"));
         
         this.lblUser.setText(userName);
@@ -159,6 +160,7 @@ public class GameSelectWin extends javax.swing.JFrame {
 
     private void btnMineSweeperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMineSweeperActionPerformed
         // TODO add your handling code here:
+        //creats new window to select difficulty of game
         DifficultyLevel diffLev= new DifficultyLevel(1);
         diffLev.setVisible(true);
 
@@ -167,6 +169,7 @@ public class GameSelectWin extends javax.swing.JFrame {
 
     private void btnMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemoryActionPerformed
         // TODO add your handling code here:
+        //creats new window to select difficulty of game
         DifficultyLevel diffLev= new DifficultyLevel(2);
         diffLev.setVisible(true);
 
@@ -174,9 +177,11 @@ public class GameSelectWin extends javax.swing.JFrame {
 
     private void btnStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsActionPerformed
         // TODO add your handling code here:
+        //creates stat window
         UserStatsWin stats;
         DefaultTableModel dtmStats;
         stats=new UserStatsWin();
+        //loads stats to stat window
         Player.getStats(p);
         for(int i=0; i<Player.gameList.length; i++){
             stats.dtmStats.addRow(p.toString(i).split("\\|"));
@@ -186,6 +191,7 @@ public class GameSelectWin extends javax.swing.JFrame {
 
     private void btnPokeMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokeMemoryActionPerformed
         // TODO add your handling code here:
+        //creats new window to select difficulty of game
         DifficultyLevel diffLev= new DifficultyLevel(3);
         diffLev.setVisible(true);
     }//GEN-LAST:event_btnPokeMemoryActionPerformed

@@ -9,6 +9,7 @@ package com.mycompany.logicgamesfinalproject;
  * @author coope
  */
 public class BoardCell {
+    //basic variables for the cells
     public int cellx;
     public int celly;
     public static int cellw=50;
@@ -23,17 +24,19 @@ public class BoardCell {
         value=0;
     }
     
+    //returns if cell is revealed
     public boolean hasBeenRevealed(){
         return this.isRevealed;
     }
+    //reveals cell
     public void revealCell(){
         this.isRevealed=true;
     }
-    
+    //hids cell if it is revealed
     public void hideCell(){
         this.isRevealed=false;
     }
-    
+    //set and get value
     public void setValue(int val){
         this.value=val;
     }
@@ -41,6 +44,7 @@ public class BoardCell {
         return this.value;
     }
     
+    //creates basic grid of BoardCells
     public static BoardCell[][] makeGrid(int gridSize){
         BoardCell[][] cells= new BoardCell[gridSize][gridSize];
         for(int i=0;i<gridSize; i++){
