@@ -22,6 +22,7 @@ public class Player {
     private String name;
     private int[] gamesPlayed;
     private int[] gamesWon;
+    private int currentGame;
 
     public static final String[] gameList={"Mine Sweeper", "Memory", "PokeMemory"};
     
@@ -35,6 +36,13 @@ public class Player {
             p= new Player();
         }
         return p;
+    }
+    
+    public void setCurrentGame(int gameNum){
+        this.currentGame=gameNum;
+    }
+    public int getCurrentGame(){
+        return this.currentGame;
     }
     
     public String getName(){

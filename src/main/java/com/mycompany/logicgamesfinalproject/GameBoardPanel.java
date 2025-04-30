@@ -36,7 +36,10 @@ public class GameBoardPanel extends javax.swing.JPanel{
             mine= ImageIO.read(new File("src/main/images/bomb.png"));
         }
         catch(Exception e){
-            System.out.println("didnt load image");
+            JOptionPane.showMessageDialog(null, "Error Loading Game", "Try New Game",JOptionPane.ERROR_MESSAGE);
+            for(int i=0; i< observerList.size(); i++){
+                observerList.get(i).cancelGame();
+            }
         }
         
         
@@ -48,6 +51,9 @@ public class GameBoardPanel extends javax.swing.JPanel{
     
     public void flagChange(){
         flagOn=!flagOn;
+        for(int i=0; i<observerList.size(); i++){
+            observerList.get(i).flagPressed(flagOn);
+        }
     }
     
     @Override
@@ -228,10 +234,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
                             }
 
                         }
-                    }
-//                    MemoryCells.selected.clear();
-                    
-
+                    }                  
                 }
             
             }

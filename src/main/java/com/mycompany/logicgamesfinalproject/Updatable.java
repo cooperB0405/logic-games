@@ -17,5 +17,9 @@ public interface Updatable {
     public void update(boolean win, Player p, int gameNum);
     
     public void appendGameInfo(String text);
+    
+    public void flagPressed(boolean flag);
+    
+    public void cancelGame();
 
 }

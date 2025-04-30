@@ -4,6 +4,7 @@
  */
 package com.mycompany.logicgamesfinalproject;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
@@ -16,6 +17,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
     private MineSweeperCells[][] mineSweeperCells;
     private int actions;
     private long startTime;
+    private Player p;
     
     /**
      * Creates new form MineSweeperWin
@@ -24,6 +26,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         initComponents();
         btnHome.setIcon(new javax.swing.ImageIcon("src/main/images/home.png"));
         btnMineFlag.setIcon(new javax.swing.ImageIcon("src/main/images/bigFlag.png"));
+        p=Player.getPlayer();
         startTime=System.currentTimeMillis();
         this.memoryCells=memoryCells;
         this.mineSweeperCells=mineSweeperCells;
@@ -69,6 +72,24 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
         long timeFromStart=currTime-startTime;
         int timeInSecs=(int) timeFromStart/1000;
         jtaGameInfo.setText(timeInSecs+": "+text);
+    }
+    
+    @Override
+    public void flagPressed(boolean flag){
+        if(flag){
+            btnMineFlag.setBackground(Color.BLACK);
+        }
+        else{
+            btnMineFlag.setBackground(Color.WHITE);
+        }
+        
+    }
+    
+    @Override
+    public void cancelGame(){
+        this.setVisible(false);
+        p.setGamesPlayed(p.getGamesPlayed(p.getCurrentGame())-1, p.getCurrentGame());
+        
     }
     
 
@@ -158,9 +179,9 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gameBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMineFlag, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMineFlag))
                 .addGap(12, 12, 12))
         );
 

@@ -31,7 +31,7 @@ public class DifficultyLevel extends javax.swing.JFrame {
         int gridSize=0;
         MineSweeperCells[][] msCells=null;
         MemoryCells[][] memCells=null;
-        
+        p.setCurrentGame(game-1);
         
         
         //alter game board
