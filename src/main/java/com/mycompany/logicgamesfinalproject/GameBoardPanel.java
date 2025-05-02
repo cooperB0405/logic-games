@@ -26,6 +26,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
     private ArrayList<Updatable> observerList= new ArrayList<>();
     private Image flag;
     private Image mine;
+
     /**
      * Creates new form GameBoard
      */
@@ -33,16 +34,17 @@ public class GameBoardPanel extends javax.swing.JPanel{
         initComponents();
         flagOn=false;
         //load images
+        
         try{
             flag = ImageIO.read(new File("src/main/images/mineFlag.gif"));
             mine= ImageIO.read(new File("src/main/images/bomb.png"));
         }
         catch(Exception e){
             //if images cant load, catch and cancel game
-            JOptionPane.showMessageDialog(null, "Error Loading Game", "Try New Game",JOptionPane.ERROR_MESSAGE);
-            for(int i=0; i< observerList.size(); i++){
-                observerList.get(i).cancelGame();
-            }
+            // JOptionPane.showMessageDialog(null, "Error Loading Game", "Try New Game",JOptionPane.ERROR_MESSAGE);
+            // for(int i=0; i< observerList.size(); i++){
+            //     observerList.get(i).cancelGame();
+            // }
         }
         
         
@@ -84,11 +86,11 @@ public class GameBoardPanel extends javax.swing.JPanel{
                     
                     //covers cell info if it hasnt been revealed
                     if (msCells[i][j].hasBeenRevealed()==false){
-                        g2.setColor(Color.black);
+                        
+                        g2.setColor(msCells[i][j].color);
                         g2.fillRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                         //draws flag if cell is flagged
                         if(msCells[i][j].hasBeenFlagged()){
-                            g2.setColor(Color.orange);
                             g2.drawImage(flag, msCells[i][j].cellx, msCells[i][j].celly, this);
                         }
                     }
@@ -110,7 +112,7 @@ public class GameBoardPanel extends javax.swing.JPanel{
                     g2.drawImage(memCells[i][j].getImage(), memCells[i][j].cellx+8, memCells[i][j].celly+10, this);
                     //covers the cell if it has not been revealed
                     if (!memCells[i][j].hasBeenRevealed()){
-                        g2.setColor(Color.black);
+                        g2.setColor(memCells[i][j].color);
                         g2.fillRect(memCells[i][j].cellx, memCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                     }
                     //grid highlights

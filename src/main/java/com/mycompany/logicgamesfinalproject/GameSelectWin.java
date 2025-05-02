@@ -44,14 +44,15 @@ public class GameSelectWin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblGameSelect = new javax.swing.JLabel();
-        btnMineSweeper = new javax.swing.JButton();
+        jpColor = new javax.swing.JPanel();
         btnMemory = new javax.swing.JButton();
         lblCurrentUser = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
         btnStats = new javax.swing.JButton();
         lblStats = new javax.swing.JLabel();
         btnPokeMemory = new javax.swing.JButton();
+        lblGameSelect = new javax.swing.JLabel();
+        btnMineSweeper = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game Select");
@@ -60,17 +61,7 @@ public class GameSelectWin extends javax.swing.JFrame {
         setForeground(new java.awt.Color(153, 0, 0));
         setResizable(false);
 
-        lblGameSelect.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        lblGameSelect.setText("Select a game");
-
-        btnMineSweeper.setBackground(new java.awt.Color(255, 153, 153));
-        btnMineSweeper.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnMineSweeper.setText("Mine Sweeper");
-        btnMineSweeper.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMineSweeperActionPerformed(evt);
-            }
-        });
+        jpColor.setBackground(new java.awt.Color(204, 255, 255));
 
         btnMemory.setBackground(new java.awt.Color(153, 255, 153));
         btnMemory.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -104,55 +95,79 @@ public class GameSelectWin extends javax.swing.JFrame {
             }
         });
 
+        lblGameSelect.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lblGameSelect.setText("Select a game");
+
+        btnMineSweeper.setBackground(new java.awt.Color(255, 153, 153));
+        btnMineSweeper.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnMineSweeper.setText("Mine Sweeper");
+        btnMineSweeper.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMineSweeperActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpColorLayout = new javax.swing.GroupLayout(jpColor);
+        jpColor.setLayout(jpColorLayout);
+        jpColorLayout.setHorizontalGroup(
+            jpColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpColorLayout.createSequentialGroup()
+                .addGroup(jpColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpColorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblCurrentUser, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblStats, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnStats, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpColorLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(btnMineSweeper, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMemory)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnPokeMemory)
+                        .addGap(0, 37, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jpColorLayout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(lblGameSelect)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jpColorLayout.setVerticalGroup(
+            jpColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpColorLayout.createSequentialGroup()
+                .addGroup(jpColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpColorLayout.createSequentialGroup()
+                        .addComponent(btnStats, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpColorLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCurrentUser)
+                            .addComponent(lblStats))
+                        .addGap(72, 72, 72)
+                        .addComponent(lblGameSelect)))
+                .addGap(18, 18, 18)
+                .addGroup(jpColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMineSweeper, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPokeMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMineSweeper)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMemory)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPokeMemory)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCurrentUser, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblGameSelect)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblStats, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnStats, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+            .addComponent(jpColor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblCurrentUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lblStats)))
-                    .addComponent(btnStats, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(lblGameSelect)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMineSweeper)
-                    .addComponent(btnMemory)
-                    .addComponent(btnPokeMemory))
-                .addContainerGap())
+            .addComponent(jpColor, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -244,6 +259,7 @@ public class GameSelectWin extends javax.swing.JFrame {
     private javax.swing.JButton btnMineSweeper;
     private javax.swing.JButton btnPokeMemory;
     private javax.swing.JButton btnStats;
+    private javax.swing.JPanel jpColor;
     private javax.swing.JLabel lblCurrentUser;
     private javax.swing.JLabel lblGameSelect;
     private javax.swing.JLabel lblStats;

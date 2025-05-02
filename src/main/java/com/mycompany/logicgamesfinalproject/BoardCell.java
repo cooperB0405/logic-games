@@ -4,6 +4,8 @@
  */
 package com.mycompany.logicgamesfinalproject;
 
+import java.awt.Color;
+
 /**
  *
  * @author coope
@@ -16,12 +18,19 @@ public class BoardCell {
     public static int cellh=50;
     private boolean isRevealed;
     private int value;
+    public Color color;
+    private static final Color[] colors={Color.BLUE, Color.GREEN, Color.MAGENTA, 
+                                    Color.YELLOW, Color.ORANGE, Color.RED, 
+                                    Color.PINK, Color.cyan};
     
     public BoardCell(int x, int y){
         cellx=x;
         celly=y;
         isRevealed=false;
         value=0;
+        int randomColor= (int) (Math.random()*colors.length);
+        this.color=colors[randomColor];
+        
     }
     
     //returns if cell is revealed
