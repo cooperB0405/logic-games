@@ -1,0 +1,13 @@
+Welcome to my Logic Games Project
+the start file is the WelcomeWin.java
+Here you will be prompted to input a username
+then through the GameSelectWin.java you can choose between 
+games and viewing your stats
+The games are prompted after selecting a difficulty in the 
+DifficultyLevel.java
+after that the GameWin.java and GameBoard.java will allow you 
+to play your selected game
+On the other hand UserStatsWin.java will show you 
+your career games played and won
+
+Enjoy!

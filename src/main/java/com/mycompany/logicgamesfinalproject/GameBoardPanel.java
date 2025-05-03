@@ -40,11 +40,9 @@ public class GameBoardPanel extends javax.swing.JPanel{
             mine= ImageIO.read(new File("src/main/images/bomb.png"));
         }
         catch(Exception e){
-            //if images cant load, catch and cancel game
-            // JOptionPane.showMessageDialog(null, "Error Loading Game", "Try New Game",JOptionPane.ERROR_MESSAGE);
-            // for(int i=0; i< observerList.size(); i++){
-            //     observerList.get(i).cancelGame();
-            // }
+            flag=null;
+            mine=null;
+                    
         }
         
         
@@ -76,8 +74,15 @@ public class GameBoardPanel extends javax.swing.JPanel{
                 for(int j=0; j<msCells[i].length; j++){
                     //draw mine image 
                     if(msCells[i][j].isAMine()){
-                        g2.drawImage(mine, msCells[i][j].cellx+7, msCells[i][j].celly+10, this);
+                        if(mine!=null){
+                            g2.drawImage(mine, msCells[i][j].cellx+7, msCells[i][j].celly+10, this);
+                        }
+                        else{
+                            g2.drawString("M", msCells[i][j].cellx+7, msCells[i][j].celly+10);
+                        }
                     }
+
+
                     //else draws adjacent mine values
                     else{
                         g2.drawString(Integer.toString(msCells[i][j].getAdjMines()), 
@@ -91,7 +96,12 @@ public class GameBoardPanel extends javax.swing.JPanel{
                         g2.fillRect(msCells[i][j].cellx, msCells[i][j].celly, BoardCell.cellw, BoardCell.cellh);
                         //draws flag if cell is flagged
                         if(msCells[i][j].hasBeenFlagged()){
-                            g2.drawImage(flag, msCells[i][j].cellx, msCells[i][j].celly, this);
+                            if(flag!=null){
+                                g2.drawImage(flag, msCells[i][j].cellx, msCells[i][j].celly, this);
+                            }
+                            else{
+                                g2.drawString("Flag", msCells[i][j].cellx, msCells[i][j].celly);
+                            }
                         }
                     }
                     //grid highlights
