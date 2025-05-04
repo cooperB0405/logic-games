@@ -152,6 +152,7 @@ public class GameWin extends javax.swing.JFrame implements Updatable {
 
         lblMoves.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
 
+        jtaGameInfo.setEditable(false);
         jtaGameInfo.setColumns(20);
         jtaGameInfo.setRows(5);
         jScrollPane1.setViewportView(jtaGameInfo);
