@@ -330,7 +330,11 @@ public class GameBoardPanel extends javax.swing.JPanel{
         }
         catch(Exception e){
             //pop up if you clicked off of the game board
-            JOptionPane.showMessageDialog(null, "Please Do Not Click Outside The Board", "Try Again",JOptionPane.ERROR_MESSAGE);
+            
+            for(int i=0; i<observerList.size(); i++){
+                observerList.get(i).appendGameInfo("Please Do Not Click Outside The Board");
+            }
+            
         }
 
 
